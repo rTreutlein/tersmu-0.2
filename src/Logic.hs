@@ -9,7 +9,7 @@
 -- along with this program.  If not, see http://www.gnu.org/licenses/.
 
 {-# LANGUAGE DeriveDataTypeable, StandaloneDeriving #-}
-module Logic where 
+module Logic where
 import Control.Monad.State
 import Data.Data
 
@@ -100,6 +100,7 @@ bigAnd ps = bigAnd' $ filter (\p -> case p of {Not Eet -> False; _ -> True}) ps
 --     show p = evalState (serialise p False) 1
 
 -- type PropPrintFlags = Bool -- insert newlines and tabs?
+
 
 -- serialise :: (Rel r, Term t) => (Prop r t) -> PropPrintFlags -> State Int String
 -- serialise p f = _serialise p f 0

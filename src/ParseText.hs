@@ -67,33 +67,30 @@ afterPos p s = drop (posCol p - 1) s
 nudgeFrees :: (String -> Result LojbanDerivs a) -> String -> Either Int a
 nudgeFrees parse s = fmap fst $ nudgeFrees' False parse s where
     nudgeFrees' :: Bool -> (String -> Result LojbanDerivs a) -> String -> Either Int (a,Int)
-    nudgeFrees' inFree parse str =
-	case parse str of
-	    Parsed a d _ -> Right (a, parsedPoint d)
-	    NoParse e ->
-		let pos = errorPoint e
-		    (head,tail) = splitAt pos str
-		in if inFree && pos == 0 then Left 0
-		else case nudgeFrees' True parseFree tail of
-		    Left n -> Left $ pos + n
-		    Right (_,flen) ->
-			nudgeFrees' inFree parse $ nudgeFree head tail flen
+    nudgeFrees' inFree parse str = case parse str of
+        Parsed a d _ -> Right (a, parsedPoint d)
+        NoParse e -> let pos = errorPoint e
+                         (head,tail) = splitAt pos str
+                     in if inFree && pos == 0 then Left 0
+                     else case nudgeFrees' True parseFree tail of
+                         Left n -> Left $ pos + n
+                         Right (_,flen) -> nudgeFrees' inFree parse $ nudgeFree head tail flen
     errorPoint e = posCol (errorPos e) - 1
     parsedPoint d = posCol (dvPos d) - 1
     parseFree = lojbanfree . lojbanParse "free"
-    nudgeFree head tail flen =
-	let ws = words head
-	    (headws',headws'') = splitAt (length ws - 1) ws
-	    (free,tail') = splitAt flen tail
-	in unwords headws' ++ (if null headws' then "" else " ") ++
-	    free ++ unwords headws'' ++ " " ++ tail'
+    nudgeFree head tail flen = let ws = words head
+                                   (headws',headws'') = splitAt (length ws - 1) ws
+                                   (free,tail') = splitAt flen tail
+                               in unwords headws' ++ (if null headws' then "" else " ") ++
+                                  free ++ unwords headws'' ++ " " ++ tail'
+
 
 {-
 -- Direct parsing without any preprocessing - currently unused
 parseAText :: String -> Either Int [Statement]
 parseAText str = case lojbanatext1 (lojbanParse "atext1" (str ++ " ")) of
-	Parsed p _ _ -> Right p
-	NoParse e -> Left (posCol (errorPos e))
+    Parsed p _ _ -> Right p
+    NoParse e -> Left (posCol (errorPos e))
 
 -- |parseTextSplitting: split text into statements, strip indicators&free from each,
 -- and parse the stripped statements. Unused.
@@ -101,14 +98,14 @@ parseAText str = case lojbanatext1 (lojbanParse "atext1" (str ++ " ")) of
 parseTextSplitting :: String -> [ Either (String,Int) (Statement,[Free]) ]
 parseTextSplitting = parseText' . stripTextHead . (++" ") where
     parseText' str = case parseStatement str of
-	    Left n -> [Left (str,n)]
-	    Right (parsed,tail) -> if null tail
-		then [Right parsed]
-		else Right parsed:parseText' tail
+        Left n -> [Left (str,n)]
+        Right (parsed,tail) -> if null tail
+        then [Right parsed]
+        else Right parsed:parseText' tail
     parseStatement :: String -> Either Int ((Statement,[Free]),String)
     parseStatement = stripFrees $ lojbanwholeStatement . lojbanParse "wholeStatement"
     stripTextHead :: String -> String
     stripTextHead str =
-	let Parsed _ d _ = lojbantextHead . lojbanParse "textHead" $ str
-	in afterPos (dvPos d) str
+    let Parsed _ d _ = lojbantextHead . lojbanParse "textHead" $ str
+    in afterPos (dvPos d) str
 -}

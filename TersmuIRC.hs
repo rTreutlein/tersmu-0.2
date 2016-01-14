@@ -10,14 +10,7 @@
 
 module TersmuIRC (onelineParse) where
 
-import ParseText (parseText)
-import JboParse (evalText, evalStatement)
-import JboSyntax
-import ParseM (ParseStateM, evalParseStateM)
-import JboShow
-import Logic
-import Bindful
-import Morph
+import Tersmu (parseText, evalText, evalStatement,ParseStateM, evalParseStateM)
 
 import Control.Monad.State
 import Control.Monad.Identity

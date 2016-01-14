@@ -8,7 +8,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see http://www.gnu.org/licenses/.
 
-{-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
+{-# LANGUAGE TypeSynonymInstances, FlexibleInstances, FlexibleContexts #-}
 module JboShow where
 
 import Bindful
@@ -53,13 +53,14 @@ withNext v f = do
     let n = head [ n | n <- [1..], not $ (v n) `elem` vals ]
     withBinding (v n) f
 
+withShuntedRelVar :: BindfulMonad ShowBindable m => (Int -> m b) -> m b
 withShuntedRelVar f =
-    do twiddleBound $ \s -> case s of SRel n -> SRel $ n+1
-				      _ -> s
+    do twiddleBound $ \s -> case s of SRel n -> SRel $ n+1 ; _ -> s
        r <- withBinding (SRel 1) f
-       twiddleBound $ \s -> case s of SRel n -> SRel $ n-1
-				      _ -> s
+       twiddleBound $ \s -> case s of SRel n -> SRel $ n-1 ; _ -> s
        return r
+
+withShuntedLambdas :: BindfulMonad ShowBindable m => Int -> ([Int] -> m b) -> m b
 withShuntedLambdas arity f = do
     twiddleBound $ \s -> case s of
 	SLambda l n -> SLambda (l+1) n
@@ -267,6 +268,7 @@ instance JboShow Abstractor where
 	    else "({" ++ conns ++ "}(" ++ s1 ++ "," ++ s2 ++ "))"
 
 instance JboShow JboPred where
+    logjboshow jbo p = logjboshowpred jbo (\n -> p (BoundVar n))
     logjboshow jbo p = logjboshowpred jbo (\n -> p (BoundVar n))
 instance JboShow JboVPred where
     -- XXX: not knowing its arity, we can't actually show a vpred...

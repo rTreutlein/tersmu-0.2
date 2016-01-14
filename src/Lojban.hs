@@ -353,7 +353,6 @@ lojbanDerivs4 dvs = LojbanDerivs4
 	(lojbanParsePA dvs)
 	(lojbanParseUI dvs)
 
-
 lojbanwholeStatement :: LojbanDerivs -> Result LojbanDerivs (Statement)
 lojbanwholeStatement d =
   case lojbanstatement d of

@@ -10,15 +10,7 @@
 
 module Main where
 
-import ParseText (parseText)
-import JboParse (evalText, evalStatement)
-import JboSyntax
-import ParseM (ParseStateT, evalParseStateT)
-import JboShow
-import JboProp
-import Logic
-import Bindful
-import Morph
+import Tersmu
 
 import Control.Monad.State
 import Control.Monad.Identity
@@ -40,15 +32,20 @@ versionString = "0.2"
 doParse :: OutputType -> Handle -> Handle -> String -> IO ()
 doParse ot h herr s = case morph s of
     Left errpos -> highlightError herr errpos s "Morphology error"
-    Right text -> evalParseStateT $ showParsedText ot h herr text $ parseText text
+    Right text -> do
+    putStrLn text
+    putStrLn ""
+    let parsed = parseText text
+    print parsed
+    putStrLn ""
+    evalParseStateT $ showParsedText ot h herr text parsed
 
 showParsedText :: OutputType -> Handle -> Handle -> String -> Either Int Text -> ParseStateT IO ()
 showParsedText ot h _ s (Right text) = do
-    jboText <- mapStateT (return.runIdentity) $ JboParse.evalText text
-    let TexticuleProp myText = head jboText
+    jboText <- mapStateT (return.runIdentity) $ evalText text
     when (not $ null jboText) $ do
         liftIO $ do
-            hPutStr h $ (show $ myText) ++ "\n\n"
+            hPutStr h $ (show $ jboText) ++ "\n\n"
             hPutStr h $ concat
                 [if not $ (jbo && ot == Loj) || (not jbo && ot == Jbo)
                 then evalBindful (logjboshow jbo jboText) ++ "\n\n"

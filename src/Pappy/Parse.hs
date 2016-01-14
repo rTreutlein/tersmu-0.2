@@ -4,6 +4,8 @@ module Pappy.Parse(module Pappy.Parse, module Pappy.Basic, module Pappy.Pos) whe
 -- It allows mixing handwritten and pappy generated parsers.
 
 import Data.Char
+import Control.Applicative hiding (many, optional)
+import Control.Monad
 
 import Pappy.Pos
 import Pappy.Basic
@@ -46,6 +48,10 @@ instance Derivs d => Monad (Parser d) where
 	-- Failure combinator
 	fail [] = Parser (\dvs -> NoParse (nullError dvs))
 	fail msg = Parser (\dvs -> NoParse (msgError (dvPos dvs) msg))
+
+instance Derivs d => Applicative (Parser d) where
+    pure = return
+    (<*>)= ap
 
 instance Derivs d => Functor (Parser d) where
     fmap f action = do r <- action; return (f r)

@@ -220,7 +220,6 @@ getBribastiBinding bs bb =
 	    TUBrivla s -> Brivla s
 	    _ -> UnboundBribasti bb
 
-
 addSideTexticule :: ParseStateful m => Texticule -> m ()
 addSideTexticule side =
     modifyParseState $ \pst -> pst{sideTexticules=side:sideTexticules pst}

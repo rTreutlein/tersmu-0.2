@@ -1,0 +1,1718 @@
+
+./Bindful.hs,446
+class Monad m => BindfulMonad BindfulMonad20,21
+class Monad m => BindfulMonad BindfulMonad20,21
+    withBinding withBinding21,22
+    binding binding22,23
+    twiddleBound twiddleBound23,24
+    getValues getValues24,25
+    evalBindful evalBindful25,26
+    nextFree nextFree28,29
+    bind bind29,30
+    unbind unbind30,31
+    bindNext bindNext31,32
+type Bindful Bindful33,34
+type Bindful s s33,34
+instance instance35,36
+
+./JboParse.hs,3831
+module JboParse JboParse10,11
+evalText evalText25,26
+evalText evalText26,27
+parseFrag parseFrag38,39
+parseFrag parseFrag39,40
+evalStatement evalStatement42,43
+evalStatement evalStatement43,44
+data FreeReturnFreeReturn45,46
+    = FRSides FRSides46,47
+    | FRTruthQ FRTruthQ47,48
+    | FRIgnoredFRIgnored48,49
+evalFree evalFree49,50
+evalFree evalFree50,51
+doFrees doFrees57,58
+doFrees doFrees58,59
+doFreesInParseM doFreesInParseM59,60
+doFreesInParseM doFreesInParseM60,61
+doFree doFree61,62
+doFree doFree62,63
+parseStatements parseStatements69,70
+parseStatements parseStatements70,71
+parseStatement parseStatement72,73
+parseStatement parseStatement73,74
+parseStatement1 parseStatement178,79
+parseStatement1 parseStatement179,80
+parseSubsentence parseSubsentence95,96
+parseSubsentence parseSubsentence96,97
+parseSentence parseSentence101,102
+parseSentence parseSentence102,103
+parseBTail parseBTail105,106
+parseBTail parseBTail106,107
+parseSelbri parseSelbri142,143
+parseSelbri parseSelbri143,144
+parseSelbri2 parseSelbri2152,153
+parseSelbri2 parseSelbri2153,154
+parseSelbri3 parseSelbri3161,162
+parseSelbri3 parseSelbri3162,163
+parseTU parseTU192,193
+parseTU parseTU193,194
+tuIsBuha tuIsBuha251,252
+tuIsBuha tuIsBuha252,253
+doBuha doBuha254,255
+doBuha doBuha255,256
+parseTerms,parsePrenexTerms parsePrenexTerms268,269
+parseTerms,parseTerms268,269
+parseTerms parseTerms269,270
+parsePrenexTerms parsePrenexTerms270,271
+parseTerms' parseTerms'271,272
+parseTerm parseTerm285,286
+parseTerm parseTerm286,287
+parseSumti parseSumti307,308
+parseSumti parseSumti308,309
+data JboRelClauseJboRelClause377,378
+    = JRRestrictive JRRestrictive378,379
+    = JRRestrictive {jrrPred:jrrPred378,379
+    | JRIncidental JRIncidental379,380
+    | JRIncidental {jriPred:jriPred379,380
+    | JRAssign JRAssign380,381
+parseRels parseRels382,383
+parseRels parseRels383,384
+stripForeRestrictives stripForeRestrictives416,417
+stripForeRestrictives stripForeRestrictives417,418
+segregateRels segregateRels421,422
+segregateRels segregateRels422,423
+doRel doRel428,429
+doRel doRel429,430
+parseVariable parseVariable438,439
+parseVariable parseVariable439,440
+parseSumtiAtom parseSumtiAtom448,449
+parseSumtiAtom parseSumtiAtom449,450
+parseTag parseTag521,522
+parseTag parseTag522,523
+parseTagUnit parseTagUnit531,532
+parseTagUnit parseTagUnit532,533
+parseConnective parseConnective549,550
+parseConnective parseConnective550,551
+mexExists mexExists557,558
+mexForall mexForall558,559
+terpJboMexAsQuantifier terpJboMexAsQuantifier559,560
+terpJboMexAsQuantifier terpJboMexAsQuantifier562,563
+nullMex nullMex567,568
+nullOp nullOp568,569
+parseMex,_parseMex _parseMex569,570
+parseMex,parseMex569,570
+parseMex parseMex570,571
+_parseMex _parseMex586,587
+parseOperator parseOperator600,601
+parseOperator parseOperator601,602
+quantify quantify613,614
+quantify quantify614,615
+rquantify rquantify621,622
+rquantify rquantify622,623
+doTag doTag629,630
+doTag doTag630,631
+doBareTag doBareTag641,642
+doBareTag doBareTag642,643
+doModal doModal644,645
+doModal doModal645,646
+nonveridicialPred nonveridicialPred647,648
+nonveridicialPred nonveridicialPred648,649
+applySeltau applySeltau654,655
+applySeltau applySeltau655,656
+mapRelsInBridi mapRelsInBridi658,659
+mapRelsInBridi mapRelsInBridi659,660
+selbriToVPred selbriToVPred661,662
+selbriToVPred selbriToVPred662,663
+parsedSelbriToVPred parsedSelbriToVPred663,664
+parsedSelbriToVPred parsedSelbriToVPred664,665
+selbriToPred selbriToPred666,667
+subsentToPred subsentToPred668,669
+subsentToPred subsentToPred669,670
+doConnective doConnective678,679
+doConnective doConnective679,680
+warning warning699,700
+
+./JboProp.hs,3032
+type JboProp JboProp26,27
+data JboTerm JboTerm28,29
+data JboTerm = BoundVar BoundVar28,29
+	     | Var Var29,30
+	     | Constant Constant30,31
+	     | Named Named31,32
+	     | PredNamed PredNamed32,33
+	     | NonAnaph NonAnaph33,34
+	     | UnboundSumbasti UnboundSumbasti34,35
+	     | JboQuote JboQuote35,36
+	     | JboErrorQuote JboErrorQuote36,37
+	     | JboNonJboQuote JboNonJboQuote37,38
+	     | TheMex TheMex38,39
+	     | Value Value39,40
+	     | Valsi Valsi40,41
+	     | UnfilledUnfilled41,42
+	     | JoikedTerms JoikedTerms42,43
+	     | QualifiedTerm QualifiedTerm43,44
+data JboRel JboRel46,47
+data JboRel = Tanru Tanru46,47
+	    | TanruConnective TanruConnective47,48
+	    | ScalarNegatedRel ScalarNegatedRel48,49
+	    | AbsPred AbsPred49,50
+	    | AbsProp AbsProp50,51
+	    | Moi Moi51,52
+	    | Among Among52,53
+	    | EqualEqual53,54
+	    | UnboundBribasti UnboundBribasti54,55
+	    | BoundRVar BoundRVar55,56
+	    | RVar RVar56,57
+	    | OperatorRel OperatorRel57,58
+	    | TagRel TagRel58,59
+	    | Brivla Brivla59,60
+data JboModalOpJboModalOp62,63
+    = JboTagged JboTagged63,64
+    | WithEventAs WithEventAs64,65
+    | QTruthModalQTruthModal65,66
+    | NonVeridicalNonVeridical66,67
+type JboTag JboTag68,69
+type JboDecoratedTagUnit JboDecoratedTagUnit69,70
+type JboTagUnit JboTagUnit70,71
+type JboConnective JboConnective71,72
+type JboVPred JboVPred74,75
+data JboNPred JboNPred75,76
+data JboNPred = JboNPred JboNPred75,76
+type JboPred JboPred77,78
+vPredToPred vPredToPred78,79
+predToNPred predToNPred79,80
+instance instance81,82
+jboPredToLojPred jboPredToLojPred84,85
+jboPredToLojPred jboPredToLojPred85,86
+type JboMex JboMex87,88
+type JboOperator JboOperator88,89
+data JboQuantifierJboQuantifier90,91
+    = MexQuantifier MexQuantifier91,92
+    | LojQuantifier LojQuantifier92,93
+    | QuestionQuantifierQuestionQuantifier93,94
+    | RelQuantifier RelQuantifier94,95
+data JboFragmentJboFragment100,101
+    = JboFragTerms JboFragTerms101,102
+    | JboFragUnparsed JboFragUnparsed102,103
+type JboText JboText105,106
+data TexticuleTexticule106,107
+    = TexticuleFrag TexticuleFrag107,108
+    | TexticuleProp TexticuleProp108,109
+propTexticules propTexticules110,111
+propTexticules propTexticules111,112
+newtype ParsedQuote ParsedQuote117,118
+newtype ParsedQuote = ParsedQuote ParsedQuote117,118
+--instance --instance127,128
+gsubstituteIn gsubstituteIn142,143
+gsubstituteIn gsubstituteIn143,144
+subTerm subTerm152,153
+subTerm subTerm153,154
+subRel subRel154,155
+subRel subRel155,156
+gtraverse_ gtraverse_156,157
+gtraverse_ gtraverse_157,158
+freeVars freeVars163,164
+freeVars freeVars164,165
+connToFOL connToFOL175,176
+connToFOL connToFOL176,177
+joikToFOL joikToFOL188,189
+joikToFOL joikToFOL189,190
+andPred andPred191,192
+andPred andPred192,193
+andMPred andMPred194,195
+andMPred andMPred195,196
+isAmong isAmong198,199
+isAmong isAmong199,200
+
+./JboShow.hs,1235
+instance instance27,28
+data ShowBindableShowBindable30,31
+    = SVar SVar31,32
+    | SRVar SRVar32,33
+    | SAss SAss33,34
+    | SRAss SRAss34,35
+    | SRel SRel35,36
+    | SLambda SLambda36,37
+class JboShow JboShow39,40
+class JboShow JboShow39,40
+    jboshow jboshow40,41
+    logshow logshow41,42
+    logjboshow logjboshow42,43
+    jboshow jboshow45,46
+    logshow logshow46,47
+    logjboshow logjboshow47,48
+withNext withNext49,50
+withNext withNext50,51
+withShuntedRelVar withShuntedRelVar55,56
+withShuntedLambdas withShuntedLambdas62,63
+bracket bracket73,74
+bracket bracket74,75
+brackets brackets85,86
+brackets brackets86,87
+jbobracket jbobracket88,89
+jbobracket jbobracket89,90
+logjboshowlist logjboshowlist104,105
+logjboshowlist logjboshowlist105,106
+logjboshownumber logjboshownumber145,146
+logjboshownumber logjboshownumber146,147
+logjboshowLogConn logjboshowLogConn198,199
+logjboshowConn logjboshowConn203,204
+logjboshowpred logjboshowpred275,276
+vowelnum vowelnum457,458
+jbonum jbonum462,463
+seToStr seToStr474,475
+faToStr faToStr480,481
+positionallyTaggedTerms positionallyTaggedTerms591,592
+positionallyTaggedTerms positionallyTaggedTerms592,593
+
+./JboSyntax.hs,7928
+module JboSyntax JboSyntax11,12
+data Text Text17,18
+data Text = Text Text17,18
+data Text = Text {textFrees:textFrees17,18
+data Text = Text {textFrees::[Free], vaguelyNegatedText:vaguelyNegatedText17,18
+	textParas:textParas18,19
+type Paragraph Paragraph20,21
+data FragmentFragment22,23
+    = FragPrenex FragPrenex23,24
+    | FragTerms FragTerms24,25
+    | FragCon FragCon25,26
+    | FragQuantifier FragQuantifier26,27
+    | FragNA FragNA27,28
+    | FragRels FragRels28,29
+    | FragLinks FragLinks29,30
+data Statement Statement32,33
+data Statement = Statement Statement32,33
+data LogJboConnective LogJboConnective35,36
+data LogJboConnective = LogJboConnective LogJboConnective35,36
+data Statement1 Statement138,39
+data Statement1 = ConnectedStatement ConnectedStatement38,39
+		| StatementSentence StatementSentence39,40
+		| StatementParas StatementParas40,41
+data Subsentence Subsentence43,44
+data Subsentence = Subsentence Subsentence43,44
+data Sentence Sentence46,47
+data Sentence = Sentence Sentence46,47
+data FreeFree49,50
+    = Bracketed Bracketed50,51
+    | Discursive Discursive51,52
+    | TruthQ TruthQ52,53
+    | Vocative Vocative53,54
+    | MAI MAI54,55
+    | XI XI55,56
+    | MexPrecedence MexPrecedence56,57
+    | SOI SOI57,58
+    | Indicator Indicator58,59
+    | Indicator {indicatorNai indicatorNai58,59
+    | Indicator {indicatorNai :: Bool, indicatorCmavo indicatorCmavo58,59
+    | NullFreeNullFree59,60
+data COI COI62,63
+data COI = COI COI62,63
+data COI = COI {coiCOI:coiCOI62,63
+data COI = COI {coiCOI::String, coiNAI:coiNAI62,63
+type FreeIndex FreeIndex65,66
+data TermTerm67,68
+    = Sumti Sumti68,69
+    | NegationNegation69,70
+    | Termset Termset70,71
+    | ConnectedTerms ConnectedTerms71,72
+    | BareTag BareTag72,73
+    | BareFA BareFA73,74
+    | NullTermNullTerm74,75
+data Tagged Tagged77,78
+data Tagged = UntaggedUntagged77,78
+	 | Tagged Tagged78,79
+	 | FATagged FATagged79,80
+	 | FAITaggedFAITagged80,81
+data AbsTag AbsTag83,84
+    = DecoratedTagUnits DecoratedTagUnits84,85
+    | ConnectedTag ConnectedTag85,86
+data DecoratedAbsTagUnit DecoratedAbsTagUnit87,88
+data DecoratedAbsTagUnit r t = DecoratedTagUnitDecoratedTagUnit87,88
+    {tagNahe:tagNahe88,89
+    {tagNahe::Maybe Cmavo, tagSE:tagSE88,89
+    {tagNahe::Maybe Cmavo, tagSE::Maybe Int, tagNAI:tagNAI88,89
+    {tagNahe::Maybe Cmavo, tagSE::Maybe Int, tagNAI::Bool, tagUnit:tagUnit88,89
+data AbsTagUnit AbsTagUnit90,91
+    = TenseCmavo TenseCmavo91,92
+    | CAhA CAhA92,93
+    | FAhA FAhA93,94
+    | FAhA {fahaHasMohi:fahaHasMohi93,94
+    | FAhA {fahaHasMohi::Bool, fahaCmavo:fahaCmavo93,94
+    | ROI ROI94,95
+    | ROI {roiroi:roiroi94,95
+    | ROI {roiroi::Cmavo, roiIsSpace:roiIsSpace94,95
+    | ROI {roiroi::Cmavo, roiIsSpace::Bool, roiQuantifier:roiQuantifier94,95
+    | TAhE_ZAhO TAhE_ZAhO95,96
+    | TAhE_ZAhO {taheZoheIsSpace:taheZoheIsSpace95,96
+    | TAhE_ZAhO {taheZoheIsSpace::Bool, taheZahoCmavo:taheZahoCmavo95,96
+    | BAI BAI96,97
+    | FIhO FIhO97,98
+    | CUhECUhE98,99
+    | KIKI99,100
+tagNaiIsScalar tagNaiIsScalar102,103
+tagNaiIsScalar tagNaiIsScalar103,104
+type Tag Tag108,109
+type DecoratedTagUnit DecoratedTagUnit109,110
+type TagUnit TagUnit110,111
+data AbsConnective AbsConnective112,113
+    = JboConnLog JboConnLog113,114
+    | JboConnJoik JboConnJoik114,115
+type Connective Connective116,117
+type Joik Joik118,119
+isTense isTense121,122
+isTense isTense122,123
+type Cmavo Cmavo129,130
+data Sumti Sumti131,132
+data Sumti = ConnectedSumti ConnectedSumti131,132
+	   | QAtom QAtom132,133
+	   | QSelbri QSelbri133,134
+appendRelsToSumti appendRelsToSumti136,137
+data RelClause RelClause143,144
+data RelClause = Restrictive Restrictive143,144
+	       | Incidental Incidental144,145
+	       | Descriptive Descriptive145,146
+	       | Assignment Assignment146,147
+	       | RestrictiveGOI RestrictiveGOI147,148
+	       | IncidentalGOI IncidentalGOI148,149
+data SumtiAtom SumtiAtom151,152
+data SumtiAtom = Name Name151,152
+	       | Variable Variable152,153
+	       | NonAnaphoricProsumti NonAnaphoricProsumti153,154
+	       | RelVar RelVar154,155
+	       | LambdaVar LambdaVar155,156
+	       | SelbriVar SelbriVar156,157
+	       | Description Description157,158
+	       | Assignable Assignable158,159
+	       | LerfuString LerfuString159,160
+	       | Ri Ri160,161
+	       | Ra Ra161,162
+	       | MainBridiSumbasti MainBridiSumbasti162,163
+	       | Quote Quote163,164
+	       | NonJboQuote NonJboQuote164,165
+	       | ErrorQuote ErrorQuote165,166
+	       | Word Word166,167
+	       | MexLi MexLi167,168
+	       | MexMex MexMex168,169
+	       | Zohe Zohe169,170
+	       | SumtiQ SumtiQ170,171
+	       | QualifiedSumti QualifiedSumti171,172
+data LerfuLerfu174,175
+    = LerfuChar LerfuChar175,176
+    | LerfuPA LerfuPA176,177
+    | LerfuValsi LerfuValsi177,178
+    | LerfuShift LerfuShift178,179
+    | LerfuShifted LerfuShifted179,180
+    | LerfuComposite LerfuComposite180,181
+type Gadri Gadri183,184
+getsRi getsRi185,186
+getsRi getsRi186,187
+isAssignable isAssignable194,195
+isAssignable isAssignable195,196
+data SumtiQualifier SumtiQualifier200,201
+data SumtiQualifier = LAhE LAhE200,201
+data SumtiQualifier = LAhE String | NAhE_BO NAhE_BO200,201
+data BridiTail BridiTail203,204
+data BridiTail = ConnectedBT ConnectedBT203,204
+	       | BridiTail3 BridiTail3204,205
+	       | GekSentence GekSentence205,206
+data GekSentence GekSentence208,209
+data GekSentence = ConnectedGS ConnectedGS208,209
+		 | TaggedGS TaggedGS209,210
+		 | NegatedGS NegatedGS210,211
+data Selbri Selbri213,214
+data Selbri = Negated Negated213,214
+	    | TaggedSelbri TaggedSelbri214,215
+	    | Selbri2 Selbri2215,216
+data Selbri2 Selbri2218,219
+data Selbri2 = SBInverted SBInverted218,219
+	     | Selbri3 Selbri3219,220
+data Selbri3 Selbri3222,223
+data Selbri3 = SBTanru SBTanru222,223
+	     | ConnectedSB ConnectedSB223,224
+	     | BridiBinding BridiBinding224,225
+	     | ScalarNegatedSB ScalarNegatedSB225,226
+	     | TanruUnit TanruUnit226,227
+type NAhE NAhE229,230
+sb3tosb sb3tosb231,232
+sb3tosb sb3tosb232,233
+data TanruUnitTanruUnit234,235
+    = TUBrivla TUBrivla235,236
+    | TUZei TUZei236,237
+    | TUBridiQ TUBridiQ237,238
+    | TUGOhA TUGOhA238,239
+    | TUMe TUMe239,240
+    | TUMoi TUMoi240,241
+    | TUAbstraction TUAbstraction241,242
+    | TUPermuted TUPermuted242,243
+    | TUJai TUJai243,244
+    | TUOperator TUOperator244,245
+    | TUXOhI TUXOhI245,246
+    | TUSelbri3 TUSelbri3246,247
+data AbstractorAbstractor249,250
+    = NU NU250,251
+    | NegatedAbstractor NegatedAbstractor251,252
+    | LogConnectedAbstractor LogConnectedAbstractor254,255
+    | JoiConnectedAbstractor JoiConnectedAbstractor255,256
+data AbsMex AbsMex258,259
+    = Operation Operation259,260
+    | ConnectedMex ConnectedMex260,261
+    | QualifiedMex QualifiedMex261,262
+    | MexInt MexInt262,263
+    | MexNumeralString MexNumeralString263,264
+    | MexLerfuString MexLerfuString264,265
+    | MexSelbri MexSelbri265,266
+    | MexSumti MexSumti266,267
+    | MexArray MexArray267,268
+type Mex Mex270,271
+mexIsNumberOrLS mexIsNumberOrLS272,273
+data Numeral Numeral277,278
+data Numeral = PA PA277,278
+data Numeral = PA Cmavo | NumeralLerfu NumeralLerfu277,278
+data AbsOperator AbsOperator280,281
+    = ConnectedOperator ConnectedOperator281,282
+    | OpPermuted OpPermuted282,283
+    | OpScalarNegated OpScalarNegated283,284
+    | OpMex OpMex284,285
+    | OpSelbri OpSelbri285,286
+    | OpVUhU OpVUhU286,287
+type Operator Operator289,290
+lerfuStringsOfSelbri lerfuStringsOfSelbri291,292
+lerfuStringsOfSelbri lerfuStringsOfSelbri292,293
+
+./Logic.hs,1000
+module Logic Logic11,12
+data Prop Prop18,19
+    = Not Not19,20
+    | Connected Connected20,21
+    | NonLogConnected NonLogConnected21,22
+    | Quantified Quantified22,23
+    | Modal Modal23,24
+    | Rel Rel24,25
+    | EetEet25,26
+instance instance28,29
+class Dummyful Dummyful38,39
+class Dummyful Dummyful38,39
+class Dummyful a where dummy dummy38,39
+data Connective Connective48,49
+data Connective = And And48,49
+data Connective = And | Or Or48,49
+data Connective = And | Or | Impl Impl48,49
+data Connective = And | Or | Impl | EquivEquiv48,49
+data LojQuantifier LojQuantifier50,51
+data LojQuantifier = Exists Exists50,51
+data LojQuantifier = Exists | Forall Forall50,51
+data LojQuantifier = Exists | Forall | Exactly Exactly50,51
+class Term Term64,65
+class Term Term64,65
+    var var65,66
+class Rel Rel67,68
+class Rel Rel67,68
+    relstr relstr68,69
+terpProp terpProp72,73
+terpProp terpProp77,78
+bigAnd bigAnd92,93
+bigAnd bigAnd93,94
+
+./Lojban.hs,25043
+module Lojban Lojban1,2
+data JekJoik JekJoik17,18
+data JekJoik = JJJek JJJek17,18
+data JekJoik = JJJek LogJboConnective | JJJoik JJJoik17,18
+jjJboCon jjJboCon18,19
+jjJboCon jjJboCon19,20
+jboConnLogOrQ jboConnLogOrQ22,23
+data LojbanDerivs LojbanDerivs28,29
+data LojbanDerivs = LojbanDerivs LojbanDerivs28,29
+	lojbanSub0 lojbanSub029,30
+	lojbanSub1 lojbanSub130,31
+	lojbanSub2 lojbanSub231,32
+	lojbanSub3 lojbanSub332,33
+	lojbanSub4 lojbanSub433,34
+	lojbanChar lojbanChar34,35
+	lojbanPos lojbanPos35,36
+instance instance38,39
+data LojbanDerivs0 LojbanDerivs042,43
+data LojbanDerivs0 = LojbanDerivs0 LojbanDerivs042,43
+	lojbanSubStarRule0 lojbanSubStarRule043,44
+	lojbanSubfree lojbanSubfree44,45
+	lojbanSubStarRule1 lojbanSubStarRule145,46
+	lojbanSubPlusRule1 lojbanSubPlusRule146,47
+	lojbanSubcoi lojbanSubcoi47,48
+	lojbanSubindicator lojbanSubindicator48,49
+	lojbanSubStarRule3 lojbanSubStarRule349,50
+	lojbanSubtext lojbanSubtext50,51
+	lojbanSubStarRule4 lojbanSubStarRule451,52
+	lojbanSubtext1 lojbanSubtext152,53
+	lojbanSubPlusRule4 lojbanSubPlusRule453,54
+	lojbanSubparagraphs lojbanSubparagraphs54,55
+	lojbanSubStarRule5 lojbanSubStarRule555,56
+	lojbanSubstatementOrFragment lojbanSubstatementOrFragment56,57
+	lojbanSubstatement lojbanSubstatement57,58
+	lojbanSubStarRule9 lojbanSubStarRule958,59
+	lojbanSubstatement2 lojbanSubstatement259,60
+	lojbanSubtermsAndTail lojbanSubtermsAndTail60,61
+	lojbanSubsubsentence lojbanSubsubsentence61,62
+data LojbanDerivs1 LojbanDerivs163,64
+data LojbanDerivs1 = LojbanDerivs1 LojbanDerivs163,64
+	lojbanSubbridiTail lojbanSubbridiTail64,65
+	lojbanSubStarRule13 lojbanSubStarRule1365,66
+	lojbanSubbridiTail2 lojbanSubbridiTail266,67
+	lojbanSubgekSentence lojbanSubgekSentence67,68
+	lojbanSubStarRule14 lojbanSubStarRule1468,69
+	lojbanSubPlusRule5 lojbanSubPlusRule569,70
+	lojbanSubterms1 lojbanSubterms170,71
+	lojbanSubPlusRule6 lojbanSubPlusRule671,72
+	lojbanSubterm lojbanSubterm72,73
+	lojbanSubtermsGikTerms lojbanSubtermsGikTerms73,74
+	lojbanSubsumti lojbanSubsumti74,75
+	lojbanSubStarRule15 lojbanSubStarRule1575,76
+	lojbanSubsumti3 lojbanSubsumti376,77
+	lojbanSubsumti4 lojbanSubsumti477,78
+	lojbanSubsumti6 lojbanSubsumti678,79
+	lojbanSubqualifier lojbanSubqualifier79,80
+	lojbanSubPlusRule7 lojbanSubPlusRule780,81
+	lojbanSubStarRule17 lojbanSubStarRule1781,82
+data LojbanDerivs2 LojbanDerivs283,84
+data LojbanDerivs2 = LojbanDerivs2 LojbanDerivs283,84
+	lojbanSubStarRule18 lojbanSubStarRule1884,85
+	lojbanSubStarRule19 lojbanSubStarRule1985,86
+	lojbanSubsumtiTail1 lojbanSubsumtiTail186,87
+	lojbanSubStarRule20 lojbanSubStarRule2087,88
+	lojbanSubrelativeClause lojbanSubrelativeClause88,89
+	lojbanSubselbri lojbanSubselbri89,90
+	lojbanSubselbri2 lojbanSubselbri290,91
+	lojbanSubselbri3Tail lojbanSubselbri3Tail91,92
+	lojbanSubStarRule21 lojbanSubStarRule2192,93
+	lojbanSubselbri5 lojbanSubselbri593,94
+	lojbanSubselbri6 lojbanSubselbri694,95
+	lojbanSubtanruUnitTail lojbanSubtanruUnitTail95,96
+	lojbanSubStarRule22 lojbanSubStarRule2296,97
+	lojbanSubPlusRule8 lojbanSubPlusRule897,98
+	lojbanSubtanruUnit2 lojbanSubtanruUnit298,99
+	lojbanSubabstractor lojbanSubabstractor99,100
+	lojbanSublinks lojbanSublinks100,101
+	lojbanSubStarRule23 lojbanSubStarRule23101,102
+	lojbanSubmex1 lojbanSubmex1102,103
+data LojbanDerivs3 LojbanDerivs3104,105
+data LojbanDerivs3 = LojbanDerivs3 LojbanDerivs3104,105
+	lojbanSubmex2 lojbanSubmex2105,106
+	lojbanSubrpExpressionTail lojbanSubrpExpressionTail106,107
+	lojbanSubStarRule24 lojbanSubStarRule24107,108
+	lojbanSuboperator1 lojbanSuboperator1108,109
+	lojbanSuboperator2 lojbanSuboperator2109,110
+	lojbanSubmexOperator lojbanSubmexOperator110,111
+	lojbanSuboperand lojbanSuboperand111,112
+	lojbanSubStarRule25 lojbanSubStarRule25112,113
+	lojbanSuboperand2 lojbanSuboperand2113,114
+	lojbanSubPlusRule10 lojbanSubPlusRule10114,115
+	lojbanSuboperand3 lojbanSuboperand3115,116
+	lojbanSubStarRule26 lojbanSubStarRule26116,117
+	lojbanSubPlusRule11 lojbanSubPlusRule11117,118
+	lojbanSubStarRule27 lojbanSubStarRule27118,119
+	lojbanSublerfuWord lojbanSublerfuWord119,120
+	lojbanSubek lojbanSubek120,121
+	lojbanSubgihek lojbanSubgihek121,122
+	lojbanSubjek lojbanSubjek122,123
+data LojbanDerivs4 LojbanDerivs4124,125
+data LojbanDerivs4 = LojbanDerivs4 LojbanDerivs4124,125
+	lojbanSubjoik lojbanSubjoik125,126
+	lojbanSubinterval lojbanSubinterval126,127
+	lojbanSubgek lojbanSubgek127,128
+	lojbanSubguhek lojbanSubguhek128,129
+	lojbanSubStarRule28 lojbanSubStarRule28129,130
+	lojbanSubPlusRule12 lojbanSubPlusRule12130,131
+	lojbanSubdecoratedTagUnit lojbanSubdecoratedTagUnit131,132
+	lojbanSubPlusRule13 lojbanSubPlusRule13132,133
+	lojbanSubPlusRule14 lojbanSubPlusRule14133,134
+	lojbanSubPlusRule15 lojbanSubPlusRule15134,135
+	lojbanSubStarRule29 lojbanSubStarRule29135,136
+	lojbanSubStarRule30 lojbanSubStarRule30136,137
+	lojbanSubPlusRule16 lojbanSubPlusRule16137,138
+	lojbanSubBU lojbanSubBU138,139
+	lojbanSubGOhA lojbanSubGOhA139,140
+	lojbanSubKOhA lojbanSubKOhA140,141
+	lojbanSubPA lojbanSubPA141,142
+	lojbanSubUI lojbanSubUI142,143
+lojbanStarRule0 lojbanStarRule0144,145
+lojbanfree lojbanfree145,146
+lojbanStarRule1 lojbanStarRule1146,147
+lojbanPlusRule1 lojbanPlusRule1147,148
+lojbancoi lojbancoi148,149
+lojbanindicator lojbanindicator149,150
+lojbanStarRule3 lojbanStarRule3150,151
+lojbantext lojbantext151,152
+lojbanStarRule4 lojbanStarRule4152,153
+lojbantext1 lojbantext1153,154
+lojbanPlusRule4 lojbanPlusRule4154,155
+lojbanparagraphs lojbanparagraphs155,156
+lojbanStarRule5 lojbanStarRule5156,157
+lojbanstatementOrFragment lojbanstatementOrFragment157,158
+lojbanstatement lojbanstatement158,159
+lojbanStarRule9 lojbanStarRule9159,160
+lojbanstatement2 lojbanstatement2160,161
+lojbantermsAndTail lojbantermsAndTail161,162
+lojbansubsentence lojbansubsentence162,163
+lojbanbridiTail lojbanbridiTail163,164
+lojbanStarRule13 lojbanStarRule13164,165
+lojbanbridiTail2 lojbanbridiTail2165,166
+lojbangekSentence lojbangekSentence166,167
+lojbanStarRule14 lojbanStarRule14167,168
+lojbanPlusRule5 lojbanPlusRule5168,169
+lojbanterms1 lojbanterms1169,170
+lojbanPlusRule6 lojbanPlusRule6170,171
+lojbanterm lojbanterm171,172
+lojbantermsGikTerms lojbantermsGikTerms172,173
+lojbansumti lojbansumti173,174
+lojbanStarRule15 lojbanStarRule15174,175
+lojbansumti3 lojbansumti3175,176
+lojbansumti4 lojbansumti4176,177
+lojbansumti6 lojbansumti6177,178
+lojbanqualifier lojbanqualifier178,179
+lojbanPlusRule7 lojbanPlusRule7179,180
+lojbanStarRule17 lojbanStarRule17180,181
+lojbanStarRule18 lojbanStarRule18181,182
+lojbanStarRule19 lojbanStarRule19182,183
+lojbansumtiTail1 lojbansumtiTail1183,184
+lojbanStarRule20 lojbanStarRule20184,185
+lojbanrelativeClause lojbanrelativeClause185,186
+lojbanselbri lojbanselbri186,187
+lojbanselbri2 lojbanselbri2187,188
+lojbanselbri3Tail lojbanselbri3Tail188,189
+lojbanStarRule21 lojbanStarRule21189,190
+lojbanselbri5 lojbanselbri5190,191
+lojbanselbri6 lojbanselbri6191,192
+lojbantanruUnitTail lojbantanruUnitTail192,193
+lojbanStarRule22 lojbanStarRule22193,194
+lojbanPlusRule8 lojbanPlusRule8194,195
+lojbantanruUnit2 lojbantanruUnit2195,196
+lojbanabstractor lojbanabstractor196,197
+lojbanlinks lojbanlinks197,198
+lojbanStarRule23 lojbanStarRule23198,199
+lojbanmex1 lojbanmex1199,200
+lojbanmex2 lojbanmex2200,201
+lojbanrpExpressionTail lojbanrpExpressionTail201,202
+lojbanStarRule24 lojbanStarRule24202,203
+lojbanoperator1 lojbanoperator1203,204
+lojbanoperator2 lojbanoperator2204,205
+lojbanmexOperator lojbanmexOperator205,206
+lojbanoperand lojbanoperand206,207
+lojbanStarRule25 lojbanStarRule25207,208
+lojbanoperand2 lojbanoperand2208,209
+lojbanPlusRule10 lojbanPlusRule10209,210
+lojbanoperand3 lojbanoperand3210,211
+lojbanStarRule26 lojbanStarRule26211,212
+lojbanPlusRule11 lojbanPlusRule11212,213
+lojbanStarRule27 lojbanStarRule27213,214
+lojbanlerfuWord lojbanlerfuWord214,215
+lojbanek lojbanek215,216
+lojbangihek lojbangihek216,217
+lojbanjek lojbanjek217,218
+lojbanjoik lojbanjoik218,219
+lojbaninterval lojbaninterval219,220
+lojbangek lojbangek220,221
+lojbanguhek lojbanguhek221,222
+lojbanStarRule28 lojbanStarRule28222,223
+lojbanPlusRule12 lojbanPlusRule12223,224
+lojbandecoratedTagUnit lojbandecoratedTagUnit224,225
+lojbanPlusRule13 lojbanPlusRule13225,226
+lojbanPlusRule14 lojbanPlusRule14226,227
+lojbanPlusRule15 lojbanPlusRule15227,228
+lojbanStarRule29 lojbanStarRule29228,229
+lojbanStarRule30 lojbanStarRule30229,230
+lojbanPlusRule16 lojbanPlusRule16230,231
+lojbanBU lojbanBU231,232
+lojbanGOhA lojbanGOhA232,233
+lojbanKOhA lojbanKOhA233,234
+lojbanPA lojbanPA234,235
+lojbanUI lojbanUI235,236
+lojbanParse lojbanParse237,238
+lojbanParse lojbanParse238,239
+lojbanDerivs lojbanDerivs240,241
+lojbanDerivs lojbanDerivs241,242
+lojbanDerivs0 lojbanDerivs0253,254
+lojbanDerivs1 lojbanDerivs1274,275
+lojbanDerivs2 lojbanDerivs2294,295
+lojbanDerivs3 lojbanDerivs3315,316
+lojbanDerivs4 lojbanDerivs4335,336
+lojbanwholeStatement lojbanwholeStatement355,356
+lojbanwholeStatement lojbanwholeStatement356,357
+lojbanParseStarRule0 lojbanParseStarRule0387,388
+lojbanParseStarRule0 lojbanParseStarRule0388,389
+lojbantextHead lojbantextHead433,434
+lojbantextHead lojbantextHead434,435
+lojbanterminatedText lojbanterminatedText441,442
+lojbanterminatedText lojbanterminatedText442,443
+lojbanParsefree lojbanParsefree490,491
+lojbanParsefree lojbanParsefree491,492
+lojbanParseStarRule1 lojbanParseStarRule1957,958
+lojbanParseStarRule1 lojbanParseStarRule1958,959
+lojbanParsePlusRule1 lojbanParsePlusRule1974,975
+lojbanParsePlusRule1 lojbanParsePlusRule1975,976
+lojbanvocative lojbanvocative994,995
+lojbanvocative lojbanvocative995,996
+lojbanParsecoi lojbanParsecoi1027,1028
+lojbanParsecoi lojbanParsecoi1028,1029
+lojbanParseindicator lojbanParseindicator1221,1222
+lojbanParseindicator lojbanParseindicator1222,1223
+lojbanParseStarRule3 lojbanParseStarRule31407,1408
+lojbanParseStarRule3 lojbanParseStarRule31408,1409
+lojbanParsetext lojbanParsetext1424,1425
+lojbanParsetext lojbanParsetext1425,1426
+lojbanParseStarRule4 lojbanParseStarRule41512,1513
+lojbanParseStarRule4 lojbanParseStarRule41513,1514
+lojbanParsetext1 lojbanParsetext11529,1530
+lojbanParsetext1 lojbanParsetext11530,1531
+lojbanParsePlusRule4 lojbanParsePlusRule41598,1599
+lojbanParsePlusRule4 lojbanParsePlusRule41599,1600
+lojbanParseparagraphs lojbanParseparagraphs1618,1619
+lojbanParseparagraphs lojbanParseparagraphs1619,1620
+lojbanParseStarRule5 lojbanParseStarRule51653,1654
+lojbanParseStarRule5 lojbanParseStarRule51654,1655
+lojbanParsestatementOrFragment lojbanParsestatementOrFragment1687,1688
+lojbanParsestatementOrFragment lojbanParsestatementOrFragment1688,1689
+lojbanParsestatement lojbanParsestatement1783,1784
+lojbanParsestatement lojbanParsestatement1784,1785
+lojbanParseStarRule9 lojbanParseStarRule91820,1821
+lojbanParseStarRule9 lojbanParseStarRule91821,1822
+lojbanParsestatement2 lojbanParsestatement21850,1851
+lojbanParsestatement2 lojbanParsestatement21851,1852
+lojbanprenex lojbanprenex1979,1980
+lojbanprenex lojbanprenex1980,1981
+lojbansentence lojbansentence2015,2016
+lojbansentence lojbansentence2016,2017
+lojbanParsetermsAndTail lojbanParsetermsAndTail2033,2034
+lojbanParsetermsAndTail lojbanParsetermsAndTail2034,2035
+lojbanParsesubsentence lojbanParsesubsentence2062,2063
+lojbanParsesubsentence lojbanParsesubsentence2063,2064
+lojbanParsebridiTail lojbanParsebridiTail2089,2090
+lojbanParsebridiTail lojbanParsebridiTail2090,2091
+lojbanParseStarRule13 lojbanParseStarRule132152,2153
+lojbanParseStarRule13 lojbanParseStarRule132153,2154
+lojbanParsebridiTail2 lojbanParsebridiTail22218,2219
+lojbanParsebridiTail2 lojbanParsebridiTail22219,2220
+lojbanParsegekSentence lojbanParsegekSentence2294,2295
+lojbanParsegekSentence lojbanParsegekSentence2295,2296
+lojbanParseStarRule14 lojbanParseStarRule142351,2352
+lojbanParseStarRule14 lojbanParseStarRule142352,2353
+lojbantailTerms lojbantailTerms2368,2369
+lojbantailTerms lojbantailTerms2369,2370
+lojbanParsePlusRule5 lojbanParsePlusRule52383,2384
+lojbanParsePlusRule5 lojbanParsePlusRule52384,2385
+lojbanParseterms1 lojbanParseterms12403,2404
+lojbanParseterms1 lojbanParseterms12404,2405
+lojbanParsePlusRule6 lojbanParsePlusRule62446,2447
+lojbanParsePlusRule6 lojbanParsePlusRule62447,2448
+lojbanterms2 lojbanterms22472,2473
+lojbanterms2 lojbanterms22473,2474
+lojbanParseterm lojbanParseterm2490,2491
+lojbanParseterm lojbanParseterm2491,2492
+lojbanParsetermsGikTerms lojbanParsetermsGikTerms2671,2672
+lojbanParsetermsGikTerms lojbanParsetermsGikTerms2672,2673
+lojbanParsesumti lojbanParsesumti2700,2701
+lojbanParsesumti lojbanParsesumti2701,2702
+lojbanParseStarRule15 lojbanParseStarRule152802,2803
+lojbanParseStarRule15 lojbanParseStarRule152803,2804
+lojbanParsesumti3 lojbanParsesumti32829,2830
+lojbanParsesumti3 lojbanParsesumti32830,2831
+lojbanParsesumti4 lojbanParsesumti42868,2869
+lojbanParsesumti4 lojbanParsesumti42869,2870
+lojbanParsesumti6 lojbanParsesumti62951,2952
+lojbanParsesumti6 lojbanParsesumti62952,2953
+lojbanParsequalifier lojbanParsequalifier3586,3587
+lojbanParsequalifier lojbanParsequalifier3587,3588
+lojbanParsePlusRule7 lojbanParsePlusRule73667,3668
+lojbanParsePlusRule7 lojbanParsePlusRule73668,3669
+lojbanname lojbanname3687,3688
+lojbanname lojbanname3688,3689
+lojbanParseStarRule17 lojbanParseStarRule173698,3699
+lojbanParseStarRule17 lojbanParseStarRule173699,3700
+lojbanParseStarRule18 lojbanParseStarRule183724,3725
+lojbanParseStarRule18 lojbanParseStarRule183725,3726
+lojbanParseStarRule19 lojbanParseStarRule193750,3751
+lojbanParseStarRule19 lojbanParseStarRule193751,3752
+lojbanParsesumtiTail1 lojbanParsesumtiTail13770,3771
+lojbanParsesumtiTail1 lojbanParsesumtiTail13771,3772
+lojbanmaybeRelativeClauses lojbanmaybeRelativeClauses3810,3811
+lojbanmaybeRelativeClauses lojbanmaybeRelativeClauses3811,3812
+lojbanParseStarRule20 lojbanParseStarRule203823,3824
+lojbanParseStarRule20 lojbanParseStarRule203824,3825
+lojbanrelativeClauses lojbanrelativeClauses3862,3863
+lojbanrelativeClauses lojbanrelativeClauses3863,3864
+lojbanParserelativeClause lojbanParserelativeClause3873,3874
+lojbanParserelativeClause lojbanParserelativeClause3874,3875
+lojbanParseselbri lojbanParseselbri4048,4049
+lojbanParseselbri lojbanParseselbri4049,4050
+lojbanselbri1 lojbanselbri14066,4067
+lojbanselbri1 lojbanselbri14067,4068
+lojbanParseselbri2 lojbanParseselbri24100,4101
+lojbanParseselbri2 lojbanParseselbri24101,4102
+lojbanParseselbri3Tail lojbanParseselbri3Tail4136,4137
+lojbanParseselbri3Tail lojbanParseselbri3Tail4137,4138
+lojbanselbri3 lojbanselbri34153,4154
+lojbanselbri3 lojbanselbri34154,4155
+lojbanParseStarRule21 lojbanParseStarRule214164,4165
+lojbanParseStarRule21 lojbanParseStarRule214165,4166
+lojbanselbri4 lojbanselbri44222,4223
+lojbanselbri4 lojbanselbri44223,4224
+lojbanParseselbri5 lojbanParseselbri54233,4234
+lojbanParseselbri5 lojbanParseselbri54234,4235
+lojbanParseselbri6 lojbanParseselbri64265,4266
+lojbanParseselbri6 lojbanParseselbri64266,4267
+lojbanParsetanruUnitTail lojbanParsetanruUnitTail4310,4311
+lojbanParsetanruUnitTail lojbanParsetanruUnitTail4311,4312
+lojbantanruUnit lojbantanruUnit4346,4347
+lojbantanruUnit lojbantanruUnit4347,4348
+lojbanParseStarRule22 lojbanParseStarRule224357,4358
+lojbanParseStarRule22 lojbanParseStarRule224358,4359
+lojbantanruUnit1 lojbantanruUnit14374,4375
+lojbantanruUnit1 lojbantanruUnit14375,4376
+lojbanParsePlusRule8 lojbanParsePlusRule84416,4417
+lojbanParsePlusRule8 lojbanParsePlusRule84417,4418
+lojbanParsetanruUnit2 lojbanParsetanruUnit24442,4443
+lojbanParsetanruUnit2 lojbanParsetanruUnit24443,4444
+lojbanconvSE lojbanconvSE4794,4795
+lojbanconvSE lojbanconvSE4795,4796
+lojbanParseabstractor lojbanParseabstractor4831,4832
+lojbanParseabstractor lojbanParseabstractor4832,4833
+lojbanlinkargs lojbanlinkargs5002,5003
+lojbanlinkargs lojbanlinkargs5003,5004
+lojbanParselinks lojbanParselinks5067,5068
+lojbanParselinks lojbanParselinks5068,5069
+lojbanquantifier lojbanquantifier5102,5103
+lojbanquantifier lojbanquantifier5103,5104
+lojbanParseStarRule23 lojbanParseStarRule235139,5140
+lojbanParseStarRule23 lojbanParseStarRule235140,5141
+lojbanmex lojbanmex5156,5157
+lojbanmex lojbanmex5157,5158
+lojbanoptail lojbanoptail5197,5198
+lojbanoptail lojbanoptail5198,5199
+lojbanParsemex1 lojbanParsemex15208,5209
+lojbanParsemex1 lojbanParsemex15209,5210
+lojbanParsemex2 lojbanParsemex25252,5253
+lojbanParsemex2 lojbanParsemex25253,5254
+lojbanrpExpression lojbanrpExpression5336,5337
+lojbanrpExpression lojbanrpExpression5337,5338
+lojbanParserpExpressionTail lojbanParserpExpressionTail5354,5355
+lojbanParserpExpressionTail lojbanParserpExpressionTail5355,5356
+lojbanParseStarRule24 lojbanParseStarRule245380,5381
+lojbanParseStarRule24 lojbanParseStarRule245381,5382
+lojbanoperator lojbanoperator5438,5439
+lojbanoperator lojbanoperator5439,5440
+lojbanParseoperator1 lojbanParseoperator15449,5450
+lojbanParseoperator1 lojbanParseoperator15450,5451
+lojbanParseoperator2 lojbanParseoperator25496,5497
+lojbanParseoperator2 lojbanParseoperator25497,5498
+lojbanParsemexOperator lojbanParsemexOperator5521,5522
+lojbanParsemexOperator lojbanParsemexOperator5522,5523
+lojbanParseoperand lojbanParseoperand5836,5837
+lojbanParseoperand lojbanParseoperand5837,5838
+lojbanParseStarRule25 lojbanParseStarRule255876,5877
+lojbanParseStarRule25 lojbanParseStarRule255877,5878
+lojbanoperand1 lojbanoperand15903,5904
+lojbanoperand1 lojbanoperand15904,5905
+lojbanParseoperand2 lojbanParseoperand25914,5915
+lojbanParseoperand2 lojbanParseoperand25915,5916
+lojbanParsePlusRule10 lojbanParsePlusRule105946,5947
+lojbanParsePlusRule10 lojbanParsePlusRule105947,5948
+lojbanParseoperand3 lojbanParseoperand35966,5967
+lojbanParseoperand3 lojbanParseoperand35967,5968
+lojbannumberOrLerfuString lojbannumberOrLerfuString6132,6133
+lojbannumberOrLerfuString lojbannumberOrLerfuString6133,6134
+lojbanParseStarRule26 lojbanParseStarRule266147,6148
+lojbanParseStarRule26 lojbanParseStarRule266148,6149
+lojbannumber lojbannumber6164,6165
+lojbannumber lojbannumber6165,6166
+lojbannumeral lojbannumeral6197,6198
+lojbannumeral lojbannumeral6198,6199
+lojbanParsePlusRule11 lojbanParsePlusRule116214,6215
+lojbanParsePlusRule11 lojbanParsePlusRule116215,6216
+lojbandigit lojbandigit6234,6235
+lojbandigit lojbandigit6235,6236
+lojbanxiLit lojbanxiLit6308,6309
+lojbanxiLit lojbanxiLit6309,6310
+lojbanParseStarRule27 lojbanParseStarRule276331,6332
+lojbanParseStarRule27 lojbanParseStarRule276332,6333
+lojbanlerfuString lojbanlerfuString6368,6369
+lojbanlerfuString lojbanlerfuString6369,6370
+lojbanParselerfuWord lojbanParselerfuWord6379,6380
+lojbanParselerfuWord lojbanParselerfuWord6380,6381
+lojbanParseek lojbanParseek6712,6713
+lojbanParseek lojbanParseek6713,6714
+lojbanParsegihek lojbanParsegihek6780,6781
+lojbanParsegihek lojbanParsegihek6781,6782
+lojbanParsejek lojbanParsejek6848,6849
+lojbanParsejek lojbanParsejek6849,6850
+lojbanParsejoik lojbanParsejoik6916,6917
+lojbanParsejoik lojbanParsejoik6917,6918
+lojbanParseinterval lojbanParseinterval7043,7044
+lojbanParseinterval lojbanParseinterval7044,7045
+lojbanjoikEk lojbanjoikEk7101,7102
+lojbanjoikEk lojbanjoikEk7102,7103
+lojbanjoikJek lojbanjoikJek7118,7119
+lojbanjoikJek lojbanjoikJek7119,7120
+lojbanParsegek lojbanParsegek7135,7136
+lojbanParsegek lojbanParsegek7136,7137
+lojbanParseguhek lojbanParseguhek7215,7216
+lojbanParseguhek lojbanParseguhek7216,7217
+lojbangik lojbangik7274,7275
+lojbangik lojbangik7275,7276
+lojbantagFA lojbantagFA7290,7291
+lojbantagFA lojbantagFA7291,7292
+lojbanParseStarRule28 lojbanParseStarRule287333,7334
+lojbanParseStarRule28 lojbanParseStarRule287334,7335
+lojbantag lojbantag7367,7368
+lojbantag lojbantag7368,7369
+lojbanParsePlusRule12 lojbanParsePlusRule127385,7386
+lojbanParsePlusRule12 lojbanParsePlusRule127386,7387
+lojbanParsedecoratedTagUnit lojbanParsedecoratedTagUnit7405,7406
+lojbanParsedecoratedTagUnit lojbanParsedecoratedTagUnit7406,7407
+lojbanLojbanLetter lojbanLojbanLetter8771,8772
+lojbanLojbanLetter lojbanLojbanLetter8772,8773
+lojbanVowel lojbanVowel8792,8793
+lojbanVowel lojbanVowel8793,8794
+lojbanConsonant lojbanConsonant8802,8803
+lojbanConsonant lojbanConsonant8803,8804
+lojbanSpace lojbanSpace8812,8813
+lojbanSpace lojbanSpace8813,8814
+lojbanParsePlusRule13 lojbanParsePlusRule138823,8824
+lojbanParsePlusRule13 lojbanParsePlusRule138824,8825
+lojbanParsePlusRule14 lojbanParsePlusRule148843,8844
+lojbanParsePlusRule14 lojbanParsePlusRule148844,8845
+lojbanValsi lojbanValsi8863,8864
+lojbanValsi lojbanValsi8864,8865
+lojbanParsePlusRule15 lojbanParsePlusRule158873,8874
+lojbanParsePlusRule15 lojbanParsePlusRule158874,8875
+lojbanWord lojbanWord8919,8920
+lojbanWord lojbanWord8920,8921
+lojbanParseStarRule29 lojbanParseStarRule298929,8930
+lojbanParseStarRule29 lojbanParseStarRule298930,8931
+lojbanCMENE lojbanCMENE8956,8957
+lojbanCMENE lojbanCMENE8957,8958
+lojbanParseStarRule30 lojbanParseStarRule308970,8971
+lojbanParseStarRule30 lojbanParseStarRule308971,8972
+lojbanParsePlusRule16 lojbanParsePlusRule168999,9000
+lojbanParsePlusRule16 lojbanParsePlusRule169000,9001
+lojbanpostClause lojbanpostClause9043,9044
+lojbanpostClause lojbanpostClause9044,9045
+lojbanA lojbanA9054,9055
+lojbanA lojbanA9055,9056
+lojbanBO lojbanBO9086,9087
+lojbanBO lojbanBO9087,9088
+lojbanBOI lojbanBOI9106,9107
+lojbanBOI lojbanBOI9107,9108
+lojbanParseBU lojbanParseBU9129,9130
+lojbanParseBU lojbanParseBU9130,9131
+lojbanCEhE lojbanCEhE9149,9150
+lojbanCEhE lojbanCEhE9150,9151
+lojbanCU lojbanCU9175,9176
+lojbanCU lojbanCU9176,9177
+lojbanDOhU lojbanDOhU9195,9196
+lojbanDOhU lojbanDOhU9196,9197
+lojbanFA lojbanFA9221,9222
+lojbanFA lojbanFA9222,9223
+lojbanFEhE lojbanFEhE9266,9267
+lojbanFEhE lojbanFEhE9267,9268
+lojbanGA lojbanGA9292,9293
+lojbanGA lojbanGA9293,9294
+lojbanGAhO lojbanGAhO9329,9330
+lojbanGAhO lojbanGAhO9330,9331
+lojbanGEhU lojbanGEhU9367,9368
+lojbanGEhU lojbanGEhU9368,9369
+lojbanGI lojbanGI9393,9394
+lojbanGI lojbanGI9394,9395
+lojbanGIhA lojbanGIhA9413,9414
+lojbanGIhA lojbanGIhA9414,9415
+lojbanGOI lojbanGOI9451,9452
+lojbanGOI lojbanGOI9452,9453
+lojbanParseGOhA lojbanParseGOhA9509,9510
+lojbanParseGOhA lojbanParseGOhA9510,9511
+lojbanGUhA lojbanGUhA9607,9608
+lojbanGUhA lojbanGUhA9608,9609
+lojbanI lojbanI9645,9646
+lojbanI lojbanI9646,9647
+lojbanJA lojbanJA9662,9663
+lojbanJA lojbanJA9663,9664
+lojbanKE lojbanKE9699,9700
+lojbanKE lojbanKE9700,9701
+lojbanKEhE lojbanKEhE9719,9720
+lojbanKEhE lojbanKEhE9720,9721
+lojbanParseKOhA lojbanParseKOhA9745,9746
+lojbanParseKOhA lojbanParseKOhA9746,9747
+lojbanKU lojbanKU9998,9999
+lojbanKU lojbanKU9999,10000
+lojbanKUhO lojbanKUhO10018,10019
+lojbanKUhO lojbanKUhO10019,10020
+lojbanLA lojbanLA10044,10045
+lojbanLA lojbanLA10045,10046
+lojbanLEhU lojbanLEhU10075,10076
+lojbanLEhU lojbanLEhU10076,10077
+lojbanLI lojbanLI10101,10102
+lojbanLI lojbanLI10102,10103
+lojbanLOhO lojbanLOhO10133,10134
+lojbanLOhO lojbanLOhO10134,10135
+lojbanLUhU lojbanLUhU10159,10160
+lojbanLUhU lojbanLUhU10160,10161
+lojbanMOI lojbanMOI10185,10186
+lojbanMOI lojbanMOI10186,10187
+lojbanNA lojbanNA10250,10251
+lojbanNA lojbanNA10251,10252
+lojbanNAI lojbanNAI10282,10283
+lojbanNAI lojbanNAI10283,10284
+lojbanNAhE lojbanNAhE10305,10306
+lojbanNAhE lojbanNAhE10306,10307
+lojbanNIhO lojbanNIhO10364,10365
+lojbanNIhO lojbanNIhO10365,10366
+lojbanNOI lojbanNOI10399,10400
+lojbanNOI lojbanNOI10400,10401
+lojbanNUhI lojbanNUhI10440,10441
+lojbanNUhI lojbanNUhI10441,10442
+lojbanNUhU lojbanNUhU10466,10467
+lojbanNUhU lojbanNUhU10467,10468
+lojbanParsePA lojbanParsePA10492,10493
+lojbanParsePA lojbanParsePA10493,10494
+lojbanSE lojbanSE10824,10825
+lojbanSE lojbanSE10825,10826
+lojbanSEI lojbanSEI10862,10863
+lojbanSEI lojbanSEI10863,10864
+lojbanSEhU lojbanSEhU10897,10898
+lojbanSEhU lojbanSEhU10898,10899
+lojbanTEhU lojbanTEhU10923,10924
+lojbanTEhU lojbanTEhU10924,10925
+lojbanParseUI lojbanParseUI10949,10950
+lojbanParseUI lojbanParseUI10950,10951
+lojbanVAU lojbanVAU11617,11618
+lojbanVAU lojbanVAU11618,11619
+lojbanVEI lojbanVEI11640,11641
+lojbanVEI lojbanVEI11641,11642
+lojbanVEhO lojbanVEhO11663,11664
+lojbanVEhO lojbanVEhO11664,11665
+lojbanXI lojbanXI11689,11690
+lojbanXI lojbanXI11690,11691
+lojbanZEI lojbanZEI11709,11710
+lojbanZEI lojbanZEI11710,11711
+
+./Morph.hs,118
+module Morph Morph10,11
+morph morph16,17
+morph morph17,18
+stripPunc stripPunc24,25
+stripPunc stripPunc25,26
+
+./Morphology.hs,17610
+module Morphology Morphology1,2
+data MorphologyDerivs MorphologyDerivs13,14
+data MorphologyDerivs = MorphologyDerivs MorphologyDerivs13,14
+	morphologySub0 morphologySub014,15
+	morphologySub1 morphologySub115,16
+	morphologySub2 morphologySub216,17
+	morphologySub3 morphologySub317,18
+	morphologyChar morphologyChar18,19
+	morphologyPos morphologyPos19,20
+instance instance22,23
+data MorphologyDerivs0 MorphologyDerivs026,27
+data MorphologyDerivs0 = MorphologyDerivs0 MorphologyDerivs026,27
+	morphologySubStarRule0 morphologySubStarRule027,28
+	morphologySublojban_word morphologySublojban_word28,29
+	morphologySubStarRule1 morphologySubStarRule129,30
+	morphologySubzifcme morphologySubzifcme30,31
+	morphologySubPlusRule0 morphologySubPlusRule031,32
+	morphologySubcmavo morphologySubcmavo32,33
+	morphologySubStarRule3 morphologySubStarRule333,34
+	morphologySubStarRule4 morphologySubStarRule434,35
+	morphologySubstressed_extended_rafsi morphologySubstressed_extended_rafsi35,36
+	morphologySubextended_rafsi morphologySubextended_rafsi36,37
+	morphologySubStarRule6 morphologySubStarRule637,38
+	morphologySubStarRule7 morphologySubStarRule738,39
+	morphologySubbrivla_head morphologySubbrivla_head39,40
+	morphologySubStarRule8 morphologySubStarRule840,41
+	morphologySubgismu morphologySubgismu41,42
+	morphologySubCVV_final_rafsi morphologySubCVV_final_rafsi42,43
+data MorphologyDerivs1 MorphologyDerivs144,45
+data MorphologyDerivs1 = MorphologyDerivs1 MorphologyDerivs144,45
+	morphologySubshort_final_rafsi morphologySubshort_final_rafsi45,46
+	morphologySubstressed_y_rafsi morphologySubstressed_y_rafsi46,47
+	morphologySubstressed_y_less_rafsi morphologySubstressed_y_less_rafsi47,48
+	morphologySuby_rafsi morphologySuby_rafsi48,49
+	morphologySuby_less_rafsi morphologySuby_less_rafsi49,50
+	morphologySubr_hyphen morphologySubr_hyphen50,51
+	morphologySubfinal_syllable morphologySubfinal_syllable51,52
+	morphologySubstressed_syllable morphologySubstressed_syllable52,53
+	morphologySubstressed_vowel morphologySubstressed_vowel53,54
+	morphologySubunstressed_syllable morphologySubunstressed_syllable54,55
+	morphologySubStarRule9 morphologySubStarRule955,56
+	morphologySubconsonantal_syllable morphologySubconsonantal_syllable56,57
+	morphologySubcoda morphologySubcoda57,58
+	morphologySubonset morphologySubonset58,59
+	morphologySubnucleus morphologySubnucleus59,60
+data MorphologyDerivs2 MorphologyDerivs261,62
+data MorphologyDerivs2 = MorphologyDerivs2 MorphologyDerivs261,62
+	morphologySubglide morphologySubglide62,63
+	morphologySubdiphthong morphologySubdiphthong63,64
+	morphologySubvowel morphologySubvowel64,65
+	morphologySubPlusRule2 morphologySubPlusRule265,66
+	morphologySubinitial_pair morphologySubinitial_pair66,67
+	morphologySubinitial morphologySubinitial67,68
+	morphologySubl morphologySubl68,69
+	morphologySubm morphologySubm69,70
+	morphologySubn morphologySubn70,71
+	morphologySubr morphologySubr71,72
+	morphologySubb morphologySubb72,73
+	morphologySubd morphologySubd73,74
+	morphologySubg morphologySubg74,75
+	morphologySubv morphologySubv75,76
+	morphologySubj morphologySubj76,77
+data MorphologyDerivs3 MorphologyDerivs378,79
+data MorphologyDerivs3 = MorphologyDerivs3 MorphologyDerivs378,79
+	morphologySubz morphologySubz79,80
+	morphologySubs morphologySubs80,81
+	morphologySubc morphologySubc81,82
+	morphologySubx morphologySubx82,83
+	morphologySubk morphologySubk83,84
+	morphologySubf morphologySubf84,85
+	morphologySubp morphologySubp85,86
+	morphologySubt morphologySubt86,87
+	morphologySubPlusRule3 morphologySubPlusRule387,88
+	morphologySubPlusRule4 morphologySubPlusRule488,89
+	morphologySubPlusRule5 morphologySubPlusRule589,90
+	morphologySubStarRule37 morphologySubStarRule3790,91
+	morphologySubStarRule38 morphologySubStarRule3891,92
+	morphologySubybu morphologySubybu92,93
+	morphologySubPlusRule6 morphologySubPlusRule693,94
+morphologyStarRule0 morphologyStarRule095,96
+morphologylojban_word morphologylojban_word96,97
+morphologyStarRule1 morphologyStarRule197,98
+morphologyzifcme morphologyzifcme98,99
+morphologyPlusRule0 morphologyPlusRule099,100
+morphologycmavo morphologycmavo100,101
+morphologyStarRule3 morphologyStarRule3101,102
+morphologyStarRule4 morphologyStarRule4102,103
+morphologystressed_extended_rafsi morphologystressed_extended_rafsi103,104
+morphologyextended_rafsi morphologyextended_rafsi104,105
+morphologyStarRule6 morphologyStarRule6105,106
+morphologyStarRule7 morphologyStarRule7106,107
+morphologybrivla_head morphologybrivla_head107,108
+morphologyStarRule8 morphologyStarRule8108,109
+morphologygismu morphologygismu109,110
+morphologyCVV_final_rafsi morphologyCVV_final_rafsi110,111
+morphologyshort_final_rafsi morphologyshort_final_rafsi111,112
+morphologystressed_y_rafsi morphologystressed_y_rafsi112,113
+morphologystressed_y_less_rafsi morphologystressed_y_less_rafsi113,114
+morphologyy_rafsi morphologyy_rafsi114,115
+morphologyy_less_rafsi morphologyy_less_rafsi115,116
+morphologyr_hyphen morphologyr_hyphen116,117
+morphologyfinal_syllable morphologyfinal_syllable117,118
+morphologystressed_syllable morphologystressed_syllable118,119
+morphologystressed_vowel morphologystressed_vowel119,120
+morphologyunstressed_syllable morphologyunstressed_syllable120,121
+morphologyStarRule9 morphologyStarRule9121,122
+morphologyconsonantal_syllable morphologyconsonantal_syllable122,123
+morphologycoda morphologycoda123,124
+morphologyonset morphologyonset124,125
+morphologynucleus morphologynucleus125,126
+morphologyglide morphologyglide126,127
+morphologydiphthong morphologydiphthong127,128
+morphologyvowel morphologyvowel128,129
+morphologyPlusRule2 morphologyPlusRule2129,130
+morphologyinitial_pair morphologyinitial_pair130,131
+morphologyinitial morphologyinitial131,132
+morphologyl morphologyl132,133
+morphologym morphologym133,134
+morphologyn morphologyn134,135
+morphologyr morphologyr135,136
+morphologyb morphologyb136,137
+morphologyd morphologyd137,138
+morphologyg morphologyg138,139
+morphologyv morphologyv139,140
+morphologyj morphologyj140,141
+morphologyz morphologyz141,142
+morphologys morphologys142,143
+morphologyc morphologyc143,144
+morphologyx morphologyx144,145
+morphologyk morphologyk145,146
+morphologyf morphologyf146,147
+morphologyp morphologyp147,148
+morphologyt morphologyt148,149
+morphologyPlusRule3 morphologyPlusRule3149,150
+morphologyPlusRule4 morphologyPlusRule4150,151
+morphologyPlusRule5 morphologyPlusRule5151,152
+morphologyStarRule37 morphologyStarRule37152,153
+morphologyStarRule38 morphologyStarRule38153,154
+morphologyybu morphologyybu154,155
+morphologyPlusRule6 morphologyPlusRule6155,156
+morphologyParse morphologyParse157,158
+morphologyParse morphologyParse158,159
+morphologyDerivs morphologyDerivs160,161
+morphologyDerivs morphologyDerivs161,162
+morphologyDerivs0 morphologyDerivs0172,173
+morphologyDerivs1 morphologyDerivs1190,191
+morphologyDerivs2 morphologyDerivs2207,208
+morphologyDerivs3 morphologyDerivs3224,225
+morphologyParseStarRule0 morphologyParseStarRule0242,243
+morphologyParseStarRule0 morphologyParseStarRule0243,244
+morphologywords morphologywords284,285
+morphologywords morphologywords285,286
+morphologyParselojban_word morphologyParselojban_word299,300
+morphologyParselojban_word morphologyParselojban_word300,301
+morphologycmene morphologycmene341,342
+morphologycmene morphologycmene342,343
+morphologyParseStarRule1 morphologyParseStarRule1362,363
+morphologyParseStarRule1 morphologyParseStarRule1363,364
+morphologyParsezifcme morphologyParsezifcme407,408
+morphologyParsezifcme morphologyParsezifcme408,409
+morphologyParsePlusRule0 morphologyParsePlusRule0424,425
+morphologyParsePlusRule0 morphologyParsePlusRule0425,426
+morphologyParsecmavo morphologyParsecmavo468,469
+morphologyParsecmavo morphologyParsecmavo469,470
+morphologyParseStarRule3 morphologyParseStarRule3575,576
+morphologyParseStarRule3 morphologyParseStarRule3576,577
+morphologyParseStarRule4 morphologyParseStarRule4602,603
+morphologyParseStarRule4 morphologyParseStarRule4603,604
+morphologybrivla_core morphologybrivla_core639,640
+morphologybrivla_core morphologybrivla_core640,641
+morphologyany_extended_rafsi morphologyany_extended_rafsi681,682
+morphologyany_extended_rafsi morphologyany_extended_rafsi682,683
+morphologyfuhivla morphologyfuhivla698,699
+morphologyfuhivla morphologyfuhivla699,700
+morphologyParsestressed_extended_rafsi morphologyParsestressed_extended_rafsi715,716
+morphologyParsestressed_extended_rafsi morphologyParsestressed_extended_rafsi716,717
+morphologyParseextended_rafsi morphologyParseextended_rafsi756,757
+morphologyParseextended_rafsi morphologyParseextended_rafsi757,758
+morphologyParseStarRule6 morphologyParseStarRule6823,824
+morphologyParseStarRule6 morphologyParseStarRule6824,825
+morphologyfuhivla_head morphologyfuhivla_head840,841
+morphologyfuhivla_head morphologyfuhivla_head841,842
+morphologyParseStarRule7 morphologyParseStarRule7850,851
+morphologyParseStarRule7 morphologyParseStarRule7851,852
+morphologyParsebrivla_head morphologyParsebrivla_head867,868
+morphologyParsebrivla_head morphologyParsebrivla_head868,869
+morphologyParseStarRule8 morphologyParseStarRule8897,898
+morphologyParseStarRule8 morphologyParseStarRule8898,899
+morphologyrafsi_string morphologyrafsi_string914,915
+morphologyrafsi_string morphologyrafsi_string915,916
+morphologyParsegismu morphologyParsegismu971,972
+morphologyParsegismu morphologyParsegismu972,973
+morphologyParseCVV_final_rafsi morphologyParseCVV_final_rafsi1016,1017
+morphologyParseCVV_final_rafsi morphologyParseCVV_final_rafsi1017,1018
+morphologyParseshort_final_rafsi morphologyParseshort_final_rafsi1039,1040
+morphologyParseshort_final_rafsi morphologyParseshort_final_rafsi1040,1041
+morphologyParsestressed_y_rafsi morphologyParsestressed_y_rafsi1074,1075
+morphologyParsestressed_y_rafsi morphologyParsestressed_y_rafsi1075,1076
+morphologyParsestressed_y_less_rafsi morphologyParsestressed_y_less_rafsi1120,1121
+morphologyParsestressed_y_less_rafsi morphologyParsestressed_y_less_rafsi1121,1122
+morphologystressed_CVC_rafsi morphologystressed_CVC_rafsi1194,1195
+morphologystressed_CVC_rafsi morphologystressed_CVC_rafsi1195,1196
+morphologyParsey_rafsi morphologyParsey_rafsi1208,1209
+morphologyParsey_rafsi morphologyParsey_rafsi1209,1210
+morphologyParsey_less_rafsi morphologyParsey_less_rafsi1262,1263
+morphologyParsey_less_rafsi morphologyParsey_less_rafsi1263,1264
+morphologyCVC_rafsi morphologyCVC_rafsi1340,1341
+morphologyCVC_rafsi morphologyCVC_rafsi1341,1342
+morphologyParser_hyphen morphologyParser_hyphen1354,1355
+morphologyParser_hyphen morphologyParser_hyphen1355,1356
+morphologyParsefinal_syllable morphologyParsefinal_syllable1375,1376
+morphologyParsefinal_syllable morphologyParsefinal_syllable1376,1377
+morphologyParsestressed_syllable morphologyParsestressed_syllable1398,1399
+morphologyParsestressed_syllable morphologyParsestressed_syllable1399,1400
+morphologyParsestressed_vowel morphologyParsestressed_vowel1419,1420
+morphologyParsestressed_vowel morphologyParsestressed_vowel1420,1421
+morphologyParseunstressed_syllable morphologyParseunstressed_syllable1440,1441
+morphologyParseunstressed_syllable morphologyParseunstressed_syllable1441,1442
+morphologyunstressed_vowel morphologyunstressed_vowel1460,1461
+morphologyunstressed_vowel morphologyunstressed_vowel1461,1462
+morphologyParseStarRule9 morphologyParseStarRule91473,1474
+morphologyParseStarRule9 morphologyParseStarRule91474,1475
+morphologystress morphologystress1490,1491
+morphologystress morphologystress1491,1492
+morphologystressed morphologystressed1512,1513
+morphologystressed morphologystressed1513,1514
+morphologyany_syllable morphologyany_syllable1545,1546
+morphologyany_syllable morphologyany_syllable1546,1547
+morphologysyllable morphologysyllable1571,1572
+morphologysyllable morphologysyllable1572,1573
+morphologyParseconsonantal_syllable morphologyParseconsonantal_syllable1593,1594
+morphologyParseconsonantal_syllable morphologyParseconsonantal_syllable1594,1595
+morphologyParsecoda morphologyParsecoda1667,1668
+morphologyParsecoda morphologyParsecoda1668,1669
+morphologyParseonset morphologyParseonset1705,1706
+morphologyParseonset morphologyParseonset1706,1707
+morphologyParsenucleus morphologyParsenucleus1732,1733
+morphologyParsenucleus morphologyParsenucleus1733,1734
+morphologyParseglide morphologyParseglide1753,1754
+morphologyParseglide morphologyParseglide1754,1755
+morphologyParsediphthong morphologyParsediphthong1778,1779
+morphologyParsediphthong morphologyParsediphthong1779,1780
+morphologyParsevowel morphologyParsevowel1831,1832
+morphologyParsevowel morphologyParsevowel1832,1833
+morphologya morphologya1865,1866
+morphologya morphologya1866,1867
+morphologye morphologye1885,1886
+morphologye morphologye1886,1887
+morphologyi morphologyi1905,1906
+morphologyi morphologyi1906,1907
+morphologyo morphologyo1925,1926
+morphologyo morphologyo1926,1927
+morphologyu morphologyu1945,1946
+morphologyu morphologyu1946,1947
+morphologyy morphologyy1965,1966
+morphologyy morphologyy1966,1967
+morphologyParsePlusRule2 morphologyParsePlusRule21985,1986
+morphologyParsePlusRule2 morphologyParsePlusRule21986,1987
+morphologycluster morphologycluster2005,2006
+morphologycluster morphologycluster2006,2007
+morphologyParseinitial_pair morphologyParseinitial_pair2016,2017
+morphologyParseinitial_pair morphologyParseinitial_pair2017,2018
+morphologyParseinitial morphologyParseinitial2033,2034
+morphologyParseinitial morphologyParseinitial2034,2035
+morphologyaffricate morphologyaffricate2180,2181
+morphologyaffricate morphologyaffricate2181,2182
+morphologyliquid morphologyliquid2221,2222
+morphologyliquid morphologyliquid2222,2223
+morphologyconsonant morphologyconsonant2234,2235
+morphologyconsonant morphologyconsonant2235,2236
+morphologysyllabic morphologysyllabic2251,2252
+morphologysyllabic morphologysyllabic2252,2253
+morphologyvoiced morphologyvoiced2272,2273
+morphologyvoiced morphologyvoiced2273,2274
+morphologyunvoiced morphologyunvoiced2301,2302
+morphologyunvoiced morphologyunvoiced2302,2303
+morphologyParsel morphologyParsel2334,2335
+morphologyParsel morphologyParsel2335,2336
+morphologyParsem morphologyParsem2360,2361
+morphologyParsem morphologyParsem2361,2362
+morphologyParsen morphologyParsen2389,2390
+morphologyParsen morphologyParsen2390,2391
+morphologyParser morphologyParser2418,2419
+morphologyParser morphologyParser2419,2420
+morphologyParseb morphologyParseb2444,2445
+morphologyParseb morphologyParseb2445,2446
+morphologyParsed morphologyParsed2473,2474
+morphologyParsed morphologyParsed2474,2475
+morphologyParseg morphologyParseg2502,2503
+morphologyParseg morphologyParseg2503,2504
+morphologyParsev morphologyParsev2531,2532
+morphologyParsev morphologyParsev2532,2533
+morphologyParsej morphologyParsej2560,2561
+morphologyParsej morphologyParsej2561,2562
+morphologyParsez morphologyParsez2592,2593
+morphologyParsez morphologyParsez2593,2594
+morphologyParses morphologyParses2624,2625
+morphologyParses morphologyParses2625,2626
+morphologyParsec morphologyParsec2656,2657
+morphologyParsec morphologyParsec2657,2658
+morphologyParsex morphologyParsex2691,2692
+morphologyParsex morphologyParsex2692,2693
+morphologyParsek morphologyParsek2726,2727
+morphologyParsek morphologyParsek2727,2728
+morphologyParsef morphologyParsef2758,2759
+morphologyParsef morphologyParsef2759,2760
+morphologyParsep morphologyParsep2787,2788
+morphologyParsep morphologyParsep2788,2789
+morphologyParset morphologyParset2816,2817
+morphologyParset morphologyParset2817,2818
+morphologyh morphologyh2845,2846
+morphologyh morphologyh2846,2847
+morphologydigit morphologydigit2868,2869
+morphologydigit morphologydigit2869,2870
+morphologypost_word morphologypost_word2918,2919
+morphologypost_word morphologypost_word2919,2920
+morphologyParsePlusRule3 morphologyParsePlusRule32935,2936
+morphologyParsePlusRule3 morphologyParsePlusRule32936,2937
+morphologypause morphologypause2955,2956
+morphologypause morphologypause2956,2957
+morphologyParsePlusRule4 morphologyParsePlusRule42973,2974
+morphologyParsePlusRule4 morphologyParsePlusRule42974,2975
+morphologynon_space morphologynon_space2993,2994
+morphologynon_space morphologynon_space2994,2995
+morphologyspace_char morphologyspace_char3010,3011
+morphologyspace_char morphologyspace_char3011,3012
+morphologyParsePlusRule5 morphologyParsePlusRule53021,3022
+morphologyParsePlusRule5 morphologyParsePlusRule53022,3023
+morphologyParseStarRule37 morphologyParseStarRule373073,3074
+morphologyParseStarRule37 morphologyParseStarRule373074,3075
+morphologyinitial_spaces_sub morphologyinitial_spaces_sub3097,3098
+morphologyinitial_spaces_sub morphologyinitial_spaces_sub3098,3099
+morphologyParseStarRule38 morphologyParseStarRule383108,3109
+morphologyParseStarRule38 morphologyParseStarRule383109,3110
+morphologyParseybu morphologyParseybu3125,3126
+morphologyParseybu morphologyParseybu3126,3127
+morphologyParsePlusRule6 morphologyParsePlusRule63155,3156
+morphologyParsePlusRule6 morphologyParsePlusRule63156,3157
+morphologyY morphologyY3175,3176
+morphologyY morphologyY3176,3177
+
+./ParseM.hs,10697
+data ParseState ParseState34,35
+data ParseState = ParseStateParseState34,35
+    { sumbastiBindings:sumbastiBindings35,36
+    , bribastiBindings:bribastiBindings36,37
+    , nextFreshVar:nextFreshVar37,38
+    , nextFreshRVar:nextFreshRVar38,39
+    , variableDomains variableDomains39,40
+    , nextFreshConstant:nextFreshConstant40,41
+    , referencedVars:referencedVars41,42
+    , questions:questions42,43
+    , lambdas:lambdas43,44
+    , sideTexticules:sideTexticules44,45
+nullParseState nullParseState46,47
+type ParseStateT ParseStateT47,48
+type ParseStateM ParseStateM48,49
+data BridiParseState BridiParseState51,52
+data BridiParseState = BridiParseState BridiParseState51,52
+data BridiParseState = BridiParseState {arglist:arglist51,52
+data BridiParseState = BridiParseState {arglist::Arglist,varBindings:varBindings51,52
+data BridiParseState = BridiParseState {arglist::Arglist,varBindings::VarBindings,rvarBindings:rvarBindings51,52
+data BridiParseState = BridiParseState {arglist::Arglist,varBindings::VarBindings,rvarBindings::RVarBindings,isSubBridi:isSubBridi51,52
+nullBridiParseState nullBridiParseState52,53
+type ParseM ParseM54,55
+type ParseM r r54,55
+type BridiM BridiM55,56
+type JboPropM JboPropM56,57
+evalParseStateT evalParseStateT58,59
+evalParseStateT evalParseStateT59,60
+evalParseStateM evalParseStateM60,61
+evalParseM evalParseM62,63
+evalParseM evalParseM63,64
+liftParseStateMToParseM liftParseStateMToParseM67,68
+liftParseStateMToParseM liftParseStateMToParseM68,69
+data Sumbasti Sumbasti73,74
+data Sumbasti = SumbastiSumbasti73,74
+    {sumbastiExplicitlyAssigned:sumbastiExplicitlyAssigned74,75
+    {sumbastiExplicitlyAssigned::Bool, sumbastiAtom:sumbastiAtom74,75
+type SumbastiBindings SumbastiBindings76,77
+type BribastiBindings BribastiBindings78,79
+data Question Question80,81
+data Question = Question Question80,81
+data Question = Question {qKauDepth qKauDepth80,81
+data Question = Question {qKauDepth :: Maybe Int, qInfo:qInfo80,81
+data QInfoQInfo81,82
+    = QTruthQTruth82,83
+    | QSumti QSumti83,84
+    | QBridi QBridi84,85
+data LambdaPos LambdaPos86,87
+data LambdaPos = LambdaPos LambdaPos86,87
+data LambdaPos = LambdaPos {lambdaLevel lambdaLevel86,87
+data LambdaPos = LambdaPos {lambdaLevel :: Int, lambdaNum lambdaNum86,87
+data VariableDomain VariableDomain89,90
+data VariableDomain = UnrestrictedDomain UnrestrictedDomain89,90
+data VariableDomain = UnrestrictedDomain | FiniteDomain FiniteDomain89,90
+data VariableDomain = UnrestrictedDomain | FiniteDomain [JboTerm] | PredDomain PredDomain89,90
+mPredToVDom mPredToVDom91,92
+mPredToVDom mPredToVDom92,93
+class (Monad m,Applicative m) => ParseStateful ParseStateful94,95
+class (Monad m,Applicative m) => ParseStateful ParseStateful94,95
+    getParseState getParseState95,96
+    putParseState putParseState96,97
+    modifyParseState modifyParseState97,98
+    modifyParseState modifyParseState98,99
+    getSumbastiBindings getSumbastiBindings100,101
+    getSumbastiBindings getSumbastiBindings101,102
+    putSumbastiBindings putSumbastiBindings102,103
+    putSumbastiBindings putSumbastiBindings103,104
+    modifySumbastiBindings modifySumbastiBindings104,105
+    modifySumbastiBindings modifySumbastiBindings105,106
+    setSumbasti setSumbasti106,107
+    setSumbasti setSumbasti107,108
+    getSumbasti getSumbasti108,109
+    getSumbasti getSumbasti109,110
+    getBribastiBindings getBribastiBindings111,112
+    getBribastiBindings getBribastiBindings112,113
+    putBribastiBindings putBribastiBindings113,114
+    putBribastiBindings putBribastiBindings114,115
+    modifyBribastiBindings modifyBribastiBindings115,116
+    modifyBribastiBindings modifyBribastiBindings116,117
+    setBribasti setBribasti117,118
+    setBribasti setBribasti118,119
+    getBribasti getBribasti119,120
+    getBribasti getBribasti120,121
+    getNextFreshVar,getNextFreshRVar getNextFreshRVar122,123
+    getNextFreshVar,getNextFreshVar122,123
+    getNextFreshVar getNextFreshVar123,124
+    getNextFreshRVar getNextFreshRVar124,125
+    putNextFreshVar,putNextFreshRVar putNextFreshRVar125,126
+    putNextFreshVar,putNextFreshVar125,126
+    putNextFreshVar putNextFreshVar126,127
+    putNextFreshRVar putNextFreshRVar127,128
+    modifyDomains modifyDomains128,129
+    modifyDomains modifyDomains129,130
+    setDomain setDomain130,131
+    setDomain setDomain131,132
+    getDomain getDomain133,134
+    getDomain getDomain134,135
+    modifyDomain modifyDomain136,137
+    modifyDomain modifyDomain137,138
+    getNextFreshConstant getNextFreshConstant138,139
+    getNextFreshConstant getNextFreshConstant139,140
+    putNextFreshConstant putNextFreshConstant140,141
+    putNextFreshConstant putNextFreshConstant141,142
+    getReferenced getReferenced142,143
+    getReferenced getReferenced143,144
+    putReferenced putReferenced144,145
+    putReferenced putReferenced145,146
+    getFreshVar getFreshVar147,148
+    getFreshVar getFreshVar151,152
+    getFreshConstant getFreshConstant156,157
+    getFreshConstant getFreshConstant157,158
+    getFreshRVar getFreshRVar161,162
+    getFreshRVar getFreshRVar162,163
+    setReferenced setReferenced166,167
+    setReferenced setReferenced167,168
+    referenced referenced168,169
+    referenced referenced169,170
+    addQuestion addQuestion171,172
+    addQuestion addQuestion172,173
+    modifyQuestions modifyQuestions173,174
+    modifyQuestions modifyQuestions174,175
+    putLambda putLambda177,178
+    putLambda putLambda178,179
+    modifyLambdas modifyLambdas191,192
+    modifyLambdas modifyLambdas192,193
+    shuntLambdas shuntLambdas194,195
+    shuntLambdas shuntLambdas195,196
+instance instance199,200
+getSumbastiBinding getSumbastiBinding206,207
+getSumbastiBinding getSumbastiBinding207,208
+getBribastiBinding getBribastiBinding214,215
+getBribastiBinding getBribastiBinding215,216
+addSideTexticule addSideTexticule223,224
+addSideTexticule addSideTexticule224,225
+takeSideTexticules takeSideTexticules227,228
+takeSideTexticules takeSideTexticules228,229
+addSumtiQuestion addSumtiQuestion233,234
+addSumtiQuestion addSumtiQuestion234,235
+addBridiQuestion addBridiQuestion238,239
+addBridiQuestion addBridiQuestion239,240
+withQuestions withQuestions243,244
+withQuestions withQuestions244,245
+doQuestions doQuestions250,251
+doQuestions doQuestions251,252
+doQInfo doQInfo253,254
+doQInfo doQInfo254,255
+deKau deKau262,263
+deKau deKau263,264
+doLambdas doLambdas272,273
+doLambdas doLambdas273,274
+data Arglist Arglist282,283
+data Arglist = Arglist Arglist282,283
+data Arglist = Arglist {args args282,283
+data Arglist = Arglist {args :: Args, position:position282,283
+type Args Args283,284
+data ArgPos ArgPos284,285
+data ArgPos = NPos NPos284,285
+data ArgPos = NPos Int | JaiPos JaiPos284,285
+data ArgPos = NPos Int | JaiPos | UnfilledPos UnfilledPos284,285
+class (Monad m,Applicative m) => Arglistful Arglistful286,287
+class (Monad m,Applicative m) => Arglistful Arglistful286,287
+    getArglist getArglist287,288
+    putArglist putArglist288,289
+    modifyArglist modifyArglist289,290
+    modifyArglist modifyArglist290,291
+type Bridi Bridi295,296
+jboRelToBridi jboRelToBridi296,297
+jboRelToBridi jboRelToBridi297,298
+withJaiAsTag withJaiAsTag299,300
+withJaiAsTag withJaiAsTag300,301
+withJaiAsRaising withJaiAsRaising304,305
+withJaiAsRaising withJaiAsRaising305,306
+nullArgs nullArgs309,310
+nullArglist nullArglist310,311
+joinArgs joinArgs312,313
+joinArgs joinArgs313,314
+swapArgs swapArgs320,321
+swapArgs swapArgs321,322
+setArg setArg323,324
+setArg setArg324,325
+addFaiToArglist addFaiToArglist326,327
+addFaiToArglist addFaiToArglist327,328
+advanceArgPosToBridi advanceArgPosToBridi329,330
+advanceArgPosToBridi advanceArgPosToBridi330,331
+ignoringArgs ignoringArgs335,336
+ignoringArgs ignoringArgs336,337
+argsToJboterms argsToJboterms340,341
+argsToJboterms argsToJboterms341,342
+bridiToJboVPred bridiToJboVPred346,347
+bridiToJboVPred bridiToJboVPred347,348
+bridiToJboPred bridiToJboPred349,350
+bridiToJboPred bridiToJboPred350,351
+swapTerms swapTerms352,353
+swapTerms swapTerms353,354
+data Arg Arg355,356
+data Arg = Arg Arg355,356
+addArg addArg356,357
+addArg addArg357,358
+setArgInArglist setArgInArglist367,368
+setArgPos setArgPos368,369
+type VarBindings VarBindings370,371
+type RVarBindings RVarBindings371,372
+class (Monad m,Applicative m,Ord s,Show s) => VarBindful VarBindful372,373
+class (Monad m,Applicative m,Ord s,Show s) => VarBindful VarBindful372,373
+    getVarBindings getVarBindings373,374
+    putVarBindings putVarBindings374,375
+    modifyVarBindings modifyVarBindings375,376
+    modifyVarBindings modifyVarBindings376,377
+    setVarBinding setVarBinding377,378
+    setVarBinding setVarBinding378,379
+    lookupVarBinding lookupVarBinding379,380
+    lookupVarBinding lookupVarBinding380,381
+    getVarBinding getVarBinding381,382
+    getVarBinding getVarBinding382,383
+shuntVars shuntVars394,395
+shuntVars shuntVars395,396
+setShunting setShunting401,402
+setShunting setShunting402,403
+class PreProp PreProp405,406
+class PreProp PreProp405,406
+    liftToProp liftToProp406,407
+    liftToProp2 liftToProp2407,408
+    dummyPreProp dummyPreProp408,409
+mapProp mapProp433,434
+mapProp mapProp434,435
+mapParseM2 mapParseM2442,443
+mapParseM2 mapParseM2443,444
+execParseMParseState execParseMParseState457,458
+execParseMParseState execParseMParseState458,459
+partiallyResolveBridi partiallyResolveBridi460,461
+partiallyResolveBridi partiallyResolveBridi461,462
+resolveBridi resolveBridi463,464
+resolveBridi resolveBridi464,465
+runSubBridiM runSubBridiM466,467
+runSubBridiM runSubBridiM467,468
+partiallyRunSubBridiM partiallyRunSubBridiM469,470
+partiallyRunSubBridiM partiallyRunSubBridiM470,471
+partiallyRunBridiM partiallyRunBridiM475,476
+partiallyRunBridiM partiallyRunBridiM476,477
+setBribastiToCurrent setBribastiToCurrent480,481
+setBribastiToCurrent setBribastiToCurrent481,482
+updateSumbastiWithSumtiAtom updateSumbastiWithSumtiAtom490,491
+updateSumbastiWithSumtiAtom updateSumbastiWithSumtiAtom491,492
+updateReferenced updateReferenced503,504
+updateReferenced updateReferenced504,505
+doAssigns doAssigns507,508
+doAssigns doAssigns508,509
+doAssign doAssign509,510
+doAssign doAssign510,511
+doIncidentals doIncidentals515,516
+doIncidentals doIncidentals516,517
+doIncidental doIncidental545,546
+
+./ParseText.hs,196
+module ParseText ParseText10,11
+parseText parseText21,22
+parseText parseText22,23
+afterPos afterPos24,25
+afterPos afterPos25,26
+nudgeFrees nudgeFrees66,67
+nudgeFrees nudgeFrees67,68
+
+./Setup.hs,15
+main main1,2
+
+./Util.hs,189
+module Util Util10,11
+swap swap12,13
+swap swap13,14
+swapFinite swapFinite16,17
+swapFiniteWithDefault swapFiniteWithDefault18,19
+swapFiniteWithDefault swapFiniteWithDefault19,20
+
+./Tersmu.hs,25
+module TersmuTersmu0,1

@@ -8,7 +8,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see http://www.gnu.org/licenses/.
 
-{-# LANGUAGE FlexibleInstances, TypeSynonymInstances, DeriveDataTypeable #-}
+{-# LANGUAGE FlexibleInstances, FlexibleContexts, TypeSynonymInstances, DeriveDataTypeable #-}
 module JboProp where
 
 import Logic hiding (Term)
@@ -21,6 +21,7 @@ import Data.Maybe
 import Control.Applicative
 import Data.Foldable (traverse_, Foldable, sequenceA_)
 import Control.Monad.Writer
+import Control.Monad.Writer.Class
 import Data.Data
 import Data.Generics.Schemes
 
@@ -142,7 +143,7 @@ instance Ord JboNPred where { _ <= _ = False }
 -- instances and special case-by-case handling
 gsubstituteIn :: (Eq a, Data a, Data b) => a -> a -> b -> b
 gsubstituteIn s t x = case cast x of
-    Just s' | s' == s -> fromJust $ cast t 
+    Just s' | s' == s -> fromJust $ cast t
     _ -> case (cast x :: Maybe (JboTerm -> JboProp)) of
 	Just pred -> fromJust $ cast $ gsubstituteIn s t . pred
 	_ -> case (cast x :: Maybe (Int -> JboProp)) of
@@ -154,24 +155,29 @@ subTerm :: JboTerm -> JboTerm -> JboProp -> JboProp
 subTerm = gsubstituteIn
 subRel :: JboRel -> JboRel -> JboProp -> JboProp
 subRel = gsubstituteIn
+
 gtraverse_ :: (Data a, Data b, Applicative f) => (a -> f ()) -> b -> f ()
 gtraverse_ f x = case cast x of
-	Just a -> f a
-	_ -> case cast x of
-	    Just (JboNPred arity pred) -> gtraverse_ f $ pred $ replicate arity Unfilled
-	    _ -> sequenceA_ $ gmapQ (gtraverse_ f) x
+    Just a -> f a
+    _      -> case cast x of
+        Just (JboNPred arity pred) -> gtraverse_ f $ pred $ replicate arity Unfilled
+        _ -> sequenceA_ $ gmapQ (gtraverse_ f) x
 
 freeVars :: JboProp -> [JboTerm]
 freeVars p = execWriter $ collectFrees p where
-	collectFrees = gtraverse_ collectFreesInTerm
-	collectFreesInTerm free@(Var _) = tell $ [free]
-	collectFreesInTerm free@(UnboundSumbasti (MainBridiSumbasti _)) = tell $ [free]
-	collectFreesInTerm (JoikedTerms joik t1 t2) = collectFreesInTerm t1 *> collectFreesInTerm t2
-	collectFreesInTerm (QualifiedTerm qual t) = collectFreesInTerm t
-	collectFreesInTerm (Constant _ ts) = traverse_ collectFreesInTerm ts
-	collectFreesInTerm (Value m) = gtraverse_ collectFreesInTerm m
-	collectFreesInTerm (PredNamed p) = gtraverse_ collectFreesInTerm p
-	collectFreesInTerm _ = pure ()
+    collectFrees = gtraverse_ collectFreesInTerm
+
+--collectFreesInTerm :: (Data a, Applicative f) => (a -> f ())
+collectFreesInTerm :: (Control.Monad.Writer.Class.MonadWriter [JboTerm] m, Control.Applicative.Applicative m) => JboTerm -> m ()
+--collectFreesInTerm :: (MonadWriter [JboTerm] m, Applicative m) => JboTerm -> m ()
+collectFreesInTerm free@(Var _) = tell $ [free]
+collectFreesInTerm free@(UnboundSumbasti (MainBridiSumbasti _)) = tell $ [free]
+collectFreesInTerm (JoikedTerms joik t1 t2) = collectFreesInTerm t1 *> collectFreesInTerm t2
+collectFreesInTerm (QualifiedTerm qual t) = collectFreesInTerm t
+collectFreesInTerm (Constant _ ts) = traverse_ collectFreesInTerm ts
+collectFreesInTerm (Value m) = gtraverse_ collectFreesInTerm m
+collectFreesInTerm (PredNamed p) = gtraverse_ collectFreesInTerm p
+collectFreesInTerm _ = pure ()
 
 connToFOL :: LogJboConnective -> JboProp -> JboProp -> JboProp
 connToFOL (LogJboConnective True 'e' True) p1 p2 = Connected And p1 p2
