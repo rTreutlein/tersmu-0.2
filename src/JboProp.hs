@@ -8,7 +8,11 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see http://www.gnu.org/licenses/.
 
-{-# LANGUAGE FlexibleInstances, FlexibleContexts, TypeSynonymInstances, DeriveDataTypeable #-}
+{-# LANGUAGE FlexibleInstances      #-}
+{-# LANGUAGE FlexibleContexts       #-}
+{-# LANGUAGE TypeSynonymInstances   #-}
+{-# LANGUAGE DeriveDataTypeable     #-}
+
 module JboProp where
 
 import Logic hiding (Term)
@@ -168,8 +172,10 @@ freeVars p = execWriter $ collectFrees p where
     collectFrees = gtraverse_ collectFreesInTerm
 
 --collectFreesInTerm :: (Data a, Applicative f) => (a -> f ())
-collectFreesInTerm :: (Control.Monad.Writer.Class.MonadWriter [JboTerm] m, Control.Applicative.Applicative m) => JboTerm -> m ()
+--collectFreesInTerm :: (Control.Monad.Writer.Class.MonadWriter [JboTerm] m, Control.Applicative.Applicative m) => JboTerm -> m ()
 --collectFreesInTerm :: (MonadWriter [JboTerm] m, Applicative m) => JboTerm -> m ()
+
+collectFreesInTerm :: forall (m :: * -> *). MonadWriter [JboTerm] m => JboTerm -> m ()
 collectFreesInTerm free@(Var _) = tell $ [free]
 collectFreesInTerm free@(UnboundSumbasti (MainBridiSumbasti _)) = tell $ [free]
 collectFreesInTerm (JoikedTerms joik t1 t2) = collectFreesInTerm t1 *> collectFreesInTerm t2
