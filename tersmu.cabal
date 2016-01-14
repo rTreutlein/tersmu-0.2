@@ -35,7 +35,6 @@ library
     hs-source-dirs: src
     exposed-modules: Tersmu
     other-modules: Bindful JboParse JboProp JboShow JboSyntax Logic Lojban Morph Morphology Pappy.Basic Pappy.Parse Pappy.Pos ParseM ParseText Util
-    ghc-options: -XFlexibleContexts
     build-depends: base >=4.3, base < 5
       , process >= 1.1, containers >= 0.5
       , mtl >=2.0, transformers >=0.2, syb >= 0.4
