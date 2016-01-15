@@ -28,6 +28,7 @@ import Control.Monad.Writer
 import Control.Monad.Writer.Class
 import Data.Data
 import Data.Generics.Schemes
+import Text.Show.Functions
 
 type JboProp = Prop JboRel JboTerm Joik JboModalOp JboQuantifier
 
@@ -133,10 +134,10 @@ instance Eq JboProp where { _ == _ = False }
 --instance Show JboProp where { show _ = "[ ... ]" }
 instance Ord JboProp where { _ <= _ = False }
 instance Eq JboPred where { _ == _ = False }
-instance Show JboPred where { show _ = "[ \\_ -> ... ]" }
+--instance Show JboPred where { show _ = "[ \\_ -> ... ]" }
 instance Ord JboPred where { _ <= _ = False }
 instance Eq JboVPred where { _ == _ = False }
-instance Show JboVPred where { show _ = "[ \\[_] -> ... ]" }
+--instance Show JboVPred where { show _ = "[ \\[_] -> ... ]" }
 instance Ord JboVPred where { _ <= _ = False }
 instance Eq JboNPred where { _ == _ = False }
 instance Show JboNPred where { show (JboNPred n _) = "[ \\_1,...,\\_"++show n++" -> ... ]" }
