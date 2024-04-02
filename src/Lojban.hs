@@ -8989,7 +8989,7 @@ lojbanParseStarRule30 d =
                 NoParse pappyErr7 -> pappyAlt5_2 (max pappyErr7 pappyErr5)
             pappyAlt5_2 pappyErr5 =
               case lojbanChar d of
-                r @ (Parsed '\'' _ _) -> r
+                r@(Parsed '\'' _ _) -> r
                 _ -> pappyAlt5_3 pappyErr5
             pappyAlt5_3 pappyErr5 = NoParse pappyErr5
     pappyAlt1_2 pappyErr1 =
@@ -9018,7 +9018,7 @@ lojbanParsePlusRule16 d =
                 NoParse pappyErr7 -> pappyAlt5_2 (max pappyErr7 pappyErr5)
             pappyAlt5_2 pappyErr5 =
               case lojbanChar d of
-                r @ (Parsed '\'' _ _) -> r
+                r@(Parsed '\'' _ _) -> r
                 _ -> pappyAlt5_3 pappyErr5
             pappyAlt5_3 pappyErr5 = NoParse pappyErr5
     pappyAlt1_2 pappyErr1 =
@@ -9036,7 +9036,7 @@ lojbanParsePlusRule16 d =
                 NoParse pappyErr7 -> pappyAlt5_2 (max pappyErr7 pappyErr5)
             pappyAlt5_2 pappyErr5 =
               case lojbanChar d of
-                r @ (Parsed '\'' _ _) -> r
+                r@(Parsed '\'' _ _) -> r
                 _ -> pappyAlt5_3 pappyErr5
             pappyAlt5_3 pappyErr5 = NoParse pappyErr5
     pappyAlt1_3 pappyErr1 = NoParse pappyErr1

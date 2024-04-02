@@ -23,7 +23,7 @@ import Bindful
 
 import Data.Maybe
 import Control.Applicative
-import Data.Foldable (traverse_, Foldable, sequenceA_)
+import Data.Foldable (traverse_, sequenceA_)
 import Control.Monad.Writer
 import Control.Monad.Writer.Class
 import Data.Data

@@ -15,81 +15,79 @@ import Pappy.Basic
 newtype Parser d v = Parser { unParser :: d -> Result d v }
 
 class Derivs d where
-	dvPos	:: d -> Pos
-	dvChar	:: d -> Result d Char
+        dvPos   :: d -> Pos
+        dvChar  :: d -> Result d Char
 
 ---------- Basic parsing combinators
 
-infixl 2 </>		-- ordered choice
-infixl 1 <?>		-- error labeling
-infixl 1 <?!>		-- unconditional error labeling
+infixl 2 </>            -- ordered choice
+infixl 1 <?>            -- error labeling
+infixl 1 <?!>           -- unconditional error labeling
 
 -- Standard monadic combinators
 instance Derivs d => Monad (Parser d) where
 
-	-- Sequencing combinator
-	(Parser p1) >>= f = Parser parse
+        -- Sequencing combinator
+        (Parser p1) >>= f = Parser parse
 
-		where parse dvs = first (p1 dvs)
+                where parse dvs = first (p1 dvs)
 
-		      first (Parsed val rem err) =
-			let Parser p2 = f val
-			in second err (p2 rem)
-		      first (NoParse err) = NoParse err
+                      first (Parsed val rem err) =
+                        let Parser p2 = f val
+                        in second err (p2 rem)
+                      first (NoParse err) = NoParse err
 
-		      second err1 (Parsed val rem err) =
-			Parsed val rem (joinErrors err1 err)
-		      second err1 (NoParse err) =
-			NoParse (joinErrors err1 err)
+                      second err1 (Parsed val rem err) =
+                        Parsed val rem (joinErrors err1 err)
+                      second err1 (NoParse err) =
+                        NoParse (joinErrors err1 err)
 
-	-- Result-producing combinator
-	return x = Parser (\dvs -> Parsed x dvs (nullError dvs))
-
-	-- Failure combinator
-	fail [] = Parser (\dvs -> NoParse (nullError dvs))
-	fail msg = Parser (\dvs -> NoParse (msgError (dvPos dvs) msg))
+instance Derivs d => MonadFail (Parser d) where
+        -- Failure combinator
+        fail [] = Parser (NoParse . nullError)
+        fail msg = Parser (\dvs -> NoParse (msgError (dvPos dvs) msg))
 
 instance Derivs d => Applicative (Parser d) where
-    pure = return
+    pure x =  Parser (\dvs -> Parsed x dvs (nullError dvs))
     (<*>)= ap
 
 instance Derivs d => Functor (Parser d) where
-    fmap f action = do r <- action; return (f r)
+    fmap f action = do f <$> action;
 
 -- Ordered choice
 (</>) :: Derivs d => Parser d v -> Parser d v -> Parser d v
 (Parser p1) </> (Parser p2) = Parser parse
 
-		where parse dvs = first dvs (p1 dvs)
+                where parse dvs = first dvs (p1 dvs)
 
-		      first dvs (result @ (Parsed val rem err)) = result
-		      first dvs (NoParse err) = second err (p2 dvs)
+                      first dvs result@(Parsed val rem err) = result
+                      first dvs (NoParse err) = second err (p2 dvs)
 
-		      second err1 (Parsed val rem err) =
-			Parsed val rem (joinErrors err1 err)
-		      second err1 (NoParse err) =
-			NoParse (joinErrors err1 err)
+                      second err1 (Parsed val rem err) =
+                        Parsed val rem (joinErrors err1 err)
+                      second err1 (NoParse err) =
+                        NoParse (joinErrors err1 err)
 
 -- Semantic predicate: 'satisfy <parser> <pred>' acts like <parser>
 -- but only succeeds if the result it generates satisfies <pred>.
 satisfy :: Derivs d => Parser d v -> (v -> Bool) -> Parser d v
 satisfy (Parser p) test = Parser parse
 
-		where parse dvs = check dvs (p dvs)
+                where parse dvs = check dvs (p dvs)
 
-		      check dvs (result @ (Parsed val rem err)) =
-			if test val then result
-				    else NoParse (nullError dvs)
-		      check dvs none = none
+                      check dvs result@(Parsed val rem err) =
+                        if test val then result
+                                    else NoParse (nullError dvs)
+                      check dvs none = none
 
 -- Syntactic predicate: 'followedBy <parser>' acts like <parser>
 -- but does not consume any input.
 followedBy :: Derivs d => Parser d v -> Parser d v
 followedBy (Parser p) = Parser parse
 
-	where parse dvs = case (p dvs) of
-		Parsed val rem err -> Parsed val dvs (nullError dvs)
-		err -> err
+        where parse dvs = case (p dvs) of
+                Parsed val rem err -> Parsed val dvs (nullError dvs)
+                err -> err
 
 -- Negative syntactic predicate: 'followedBy <parser>' invokes <parser>,
 -- then succeeds without consuming any input if <parser> fails,
@@ -97,9 +95,9 @@ followedBy (Parser p) = Parser parse
 notFollowedBy :: Derivs d => Parser d v -> Parser d ()
 notFollowedBy (Parser p) = Parser parse
 
-	where parse dvs = case (p dvs) of
-		Parsed val rem err -> NoParse (nullError dvs)
-		NoParse err -> Parsed () dvs (nullError dvs)
+        where parse dvs = case (p dvs) of
+                Parsed val rem err -> NoParse (nullError dvs)
+                NoParse err -> Parsed () dvs (nullError dvs)
 
 -- Optional combinator: 'optional <parser>' invokes <parser>,
 -- then produces the result 'Just <v>' if <parser> produced <v>,
@@ -118,7 +116,7 @@ optional p = (do v <- p; return (Just v)) </> return Nothing
 -- Always succeeds, producing an empty list in the degenerate case.
 many :: Derivs d => Parser d v -> Parser d [v]
 many p = (do { v <- p; vs <- many p; return (v : vs) } )
-	 </> return []
+         </> return []
 
 -- One or more repetition combinator:
 -- 'many1 <parser>' invokes <parser> repeatedly until it fails,
@@ -133,8 +131,8 @@ many1 p = do { v <- p; vs <- many p; return (v : vs) }
 -- Only the results of <parser> are collected into the final result list.
 sepBy1 :: Derivs d => Parser d v -> Parser d vsep -> Parser d [v]
 sepBy1 p psep = do v <- p
-		   vs <- many (do { psep; p })
-		   return (v : vs)
+                   vs <- many (do { psep; p })
+                   return (v : vs)
 
 -- Zero or more repetitions with a separator:
 -- like sepBy1, but succeeds with an empty list if nothing can be parsed.
@@ -167,12 +165,12 @@ sepEndBy p psep = do v <- sepBy p psep; optional psep; return v
 -- e.g., 't1 op t2 op t3' is interpreted as '(t1 op t2) op t3'
 chainl1 :: Derivs d => Parser d v -> Parser d (v->v->v) -> Parser d v
 chainl1 p psep =
-	let psuffix z = (do f <- psep
-			    v <- p
-			    psuffix (f z v))
-			</> return z
-	in do v <- p
-	      psuffix v
+        let psuffix z = (do f <- psep
+                            v <- p
+                            psuffix (f z v))
+                        </> return z
+        in do v <- p
+              psuffix v
 
 -- Zero or more repetitions separated by left-associative operators.
 chainl :: Derivs d => Parser d v -> Parser d (v->v->v) -> v -> Parser d v
@@ -182,10 +180,10 @@ chainl p psep z = chainl1 p psep </> return z
 -- e.g., 't1 op t2 op t3' is interpreted as 't1 op (t2 op t3)'
 chainr1 :: Derivs d => Parser d v -> Parser d (v->v->v) -> Parser d v
 chainr1 p psep = (do v <- p
-		     f <- psep
-		     w <- chainr1 p psep
-		     return (f v w))
-		 </> p
+                     f <- psep
+                     w <- chainr1 p psep
+                     return (f v w))
+                 </> p
 
 -- Zero or more repetitions separated by left-associative operators.
 chainr :: Derivs d => Parser d v -> Parser d (v->v->v) -> v -> Parser d v
@@ -241,19 +239,19 @@ char ch = satisfy anyChar (\c -> c == ch) <?> show ch
 -- 'oneOf <s>' matches any character in string <s>.
 oneOf :: Derivs d => [Char] -> Parser d Char
 oneOf chs = satisfy anyChar (\c -> c `elem` chs)
-	    <?> ("one of the characters " ++ show chs)
+            <?> ("one of the characters " ++ show chs)
 
 -- 'noneOf <s>' matches any character not in string <s>.
 noneOf :: Derivs d => [Char] -> Parser d Char
 noneOf chs = satisfy anyChar (\c -> not (c `elem` chs))
-	     <?> ("any character not in " ++ show chs)
+             <?> ("any character not in " ++ show chs)
 
 -- 'string <s>' matches all the characters in <s> in sequence.
 string :: Derivs d => String -> Parser d String
 string str = p str <?> show str
 
-	where p [] = return str
-	      p (ch:chs) = do { char ch; p chs }
+        where p [] = return str
+              p (ch:chs) = do { char ch; p chs }
 
 -- 'stringFrom <ss>' matches any string in the list of strings <ss>.
 -- If any strings in <ss> are prefixes of other strings in <ss>,
